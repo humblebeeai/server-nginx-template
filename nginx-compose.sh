@@ -125,7 +125,10 @@ _doUpdate()
 
 _doClean()
 {
-	_doStop
+	if [ ! -z "$(docker compose ps | grep 'Up')" ]; then
+		_doStop
+	fi
+
 	rm -rfv ./volumes/storage/nginx/logs/* ./volumes/storage/nginx/ssl/* || exit 2
 }
 ## --- Functions --- ##
