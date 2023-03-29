@@ -1,4 +1,14 @@
-# Build and push image
+# Build and publish docker image
+
+## 1. Set image namespace
+
+```sh
+export IMG_NAMESCAPE=[IMG_NAMESPACE]
+# For example:
+export IMG_NAMESCAPE=username
+```
+
+## 2. Build and push image
 
 **A.** **[RECOMMENDED]** Run **`build.sh`** script to build images:
 
@@ -11,7 +21,7 @@
 # -c, --clean-images                        Enable clearning leftover images.
 # -x, --cross-compile                       Enable cross compiling.
 # -b=BASE_IMAGE, --base-image=BASE_IMAGE    Base image name. Default is "debian:11.6-slim".
-# -n=NAMESPACE, --namespace=NAMESPACE       Docker image name space. Default is "bybatkhuu".
+# -n=NAMESPACE, --namespace=NAMESPACE       Docker image namespace.
 # -r=REPO, --repo=REPO                      Docker image repository. Default is "nginx".
 # -v=VERSION, --version=VERSION             Docker image version. Default is "$(cat version.txt)".
 # -s=SUBTAG, --subtag=SUBTAG                Docker image subtag. Default is "".
@@ -24,7 +34,7 @@
 ./scripts/build.sh -x
 
 # Or:
-./scripts/build.sh -p=arm64 -b=debian:11.6-slim -n=bybatkhuu -r=nginx -v=1.0.0 -s=-arm64 -u -c
+./scripts/build.sh -p=arm64 -b=debian:11.6-slim -n=${IMG_NAMESCAPE} -r=nginx -v=1.0.0 -s=-arm64 -u -c
 ```
 
 **B.** Or docker build command:
@@ -39,16 +49,14 @@ docker build \
     .
 # For example:
 docker build \
-    --build-arg BASE_IMAGE=debian:11.6-slim \
     --progress plain \
-    --platform linux/amd64 \
-    -t bybatkhuu/nginx:latest \
+    -t ${IMG_NAMESCAPE}/nginx:latest \
     .
 
 # Push image to Docker Registry:
 docker push [IMG_FULLNAME]
 # For example:
-docker push bybatkhuu/nginx:latest
+docker push ${IMG_NAMESCAPE}/nginx:latest
 ```
 
 **C.** Or docker buildx command (**cross-compile**):
@@ -69,12 +77,11 @@ docker buildx build \
     .
 # For example:
 docker buildx build \
-    --build-arg BASE_IMAGE=debian:11.6-slim \
     --progress plain \
     --platform linux/amd64,linux/arm64 \
-    --cache-from=type=registry,ref=bybatkhuu/nginx:cache-latest \
-    --cache-to=type=registry,ref=bybatkhuu/nginx:cache-latest,mode=max \
-    -t bybatkhuu/nginx:latest \
+    --cache-from=type=registry,ref=${IMG_NAMESCAPE}/nginx:cache-latest \
+    --cache-to=type=registry,ref=${IMG_NAMESCAPE}/nginx:cache-latest,mode=max \
+    -t ${IMG_NAMESCAPE}/nginx:latest \
     --push \
     .
 

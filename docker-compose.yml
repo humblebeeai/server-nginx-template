@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   nginx:
-    image: ${NGINX_IMG_NAMESCAPE:-bybatkhuu}/nginx:${NGINX_IMG_VERSION:-latest}
+    image: ${IMG_NAMESCAPE}/nginx:latest
     build:
       context: .
     restart: unless-stopped
@@ -11,6 +11,7 @@ services:
       - TZ=${TZ:-Asia/Seoul}
     volumes:
       - "./volumes/storage/nginx/configs/templates:/etc/nginx/templates"
+      - "./volumes/storage/nginx/www:/var/www"
       - "./volumes/storage/nginx/logs:/var/log/nginx"
     network_mode: host
     tty: true
