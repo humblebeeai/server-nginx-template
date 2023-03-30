@@ -5,7 +5,7 @@ This is a NGINX template docker image that can be used as a web server, reverse 
 ## Features
 
 - NGINX - <https://nginx.org>
-- Template configuration
+- NGINX template configuration
 - Web server
 - Reverse proxy
 - Load balancer
@@ -23,7 +23,7 @@ This is a NGINX template docker image that can be used as a web server, reverse 
 
 ### 1. Prerequisites
 
-- **Server**
+- **Server/PC** to run
 - Install **docker** and **docker-compose** in **server** - <https://docs.docker.com/engine/install>
 
 For **development**:
@@ -41,6 +41,11 @@ mkdir -pv ~/workspaces/projects
 
 # Enter into projects directory:
 cd ~/workspaces/projects
+
+# Set to downloaded version:
+export _VERSION=[VERSION]
+# For example:
+export _VERSION=1.0.0
 ```
 
 **2.2.** Follow one of the below options **[A]** or **[B]**:
@@ -50,11 +55,6 @@ cd ~/workspaces/projects
 - Releases - <https://github.com/[REPO_OWNER]/server.nginx_template/releases>
 
 ```sh
-# Set to downloaded version:
-export _VERSION=[VERSION]
-# For example:
-export _VERSION=1.0.0
-
 # Move downloaded archive file to current projects directory:
 mv -v ~/Downloads/server.nginx_template-${_VERSION}.zip .
 
@@ -65,24 +65,13 @@ unzip server.nginx_template-${_VERSION}.zip
 rm -v server.nginx_template-${_VERSION}.zip
 
 # Rename extracted directory into project name:
-mv -v server.nginx_template-${_VERSION} server.nginx_template
+mv -v server.nginx_template-${_VERSION} server.nginx_template && cd server.nginx_template
 ```
 
 **B.** Or clone the repository (git + ssh key):
 
 ```sh
-# Set repository owner:
-export _REPO_OWNER=[REPO_OWNER]
-# For example:
-export _REPO_OWNER=username
-
-git clone git@github.com:${_REPO_OWNER}/server.nginx_template.git
-```
-
-**2.3.** Enter into project directory:
-
-```sh
-cd server.nginx_template
+git clone git@github.com:${_REPO_OWNER}/server.nginx_template.git && cd server.nginx_template
 ```
 
 ### 3. Configure environment
@@ -167,10 +156,14 @@ You can use the following environment variables to configure:
 [**`.env.example`**](.env.example)
 
 ```sh
-## NGINX:
+## Docker image namespace:
+IMG_NAMESCAPE=username
+
+## NGINX basic auth username and password:
 # NGINX_BASIC_AUTH_USER=nginx_admin
 # NGINX_BASIC_AUTH_PASS="admin_password"
 
+## NGINX HTTP and HTTPS ports:
 # NGINX_HTTP_PORT=80
 # NGINX_HTTPS_PORT=443
 ```
