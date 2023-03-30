@@ -75,7 +75,7 @@ _httpsLets()
 	# shellcheck disable=SC2046
 	while [ $(find "${NGINX_SSL_DIR}/live" -name "*.pem" | wc -l) -le 2 ]; do
 		echo "INFO: Waiting for certbot to obtain SSL/TLS files..."
-		sleep 1
+		sleep 3
 	done
 
 	if [ ! -d "/var/www/.well-known/acme-challenge" ]; then
