@@ -30,10 +30,10 @@ _generateDHparam()
 	_dhparam_file_path="${NGINX_SSL_DIR}/${NGINX_DHPARAM_FILENAME}"
 	if [ ! -f "${_dhparam_file_path}" ]; then
 		echo "INFO: Generating Diffie-Hellman parameters..."
-		openssl dhparam -out ${_dhparam_file_path} ${NGINX_SSL_KEY_LENGTH} || exit 2
+		openssl dhparam -out "${_dhparam_file_path}" "${NGINX_SSL_KEY_LENGTH}" || exit 2
 
-		chown -c 1000:${GROUP} ${_dhparam_file_path} || exit 2
-		chmod -c 660 ${_dhparam_file_path} || exit 2
+		chown -c "1000:${GROUP}" "${_dhparam_file_path}" || exit 2
+		chmod -c 660 "${_dhparam_file_path}" || exit 2
 		echo -e "SUCCESS: Done.\n"
 	fi
 }
@@ -54,12 +54,12 @@ _httpsSelf()
 	_ssl_key_file_path="${NGINX_SSL_DIR}/${_ssl_key_filename}"
 	_ssl_cert_file_path="${NGINX_SSL_DIR}/${_ssl_cert_filename}"
 	if [ ! -f "${_ssl_key_file_path}" ] || [ ! -f "${_ssl_cert_file_path}" ]; then
-		openssl req -x509 -nodes -days 365 -newkey rsa:${NGINX_SSL_KEY_LENGTH} \
-			-keyout ${_ssl_key_file_path} -out ${_ssl_cert_file_path} \
+		openssl req -x509 -nodes -days 365 -newkey "rsa:${NGINX_SSL_KEY_LENGTH}" \
+			-keyout "${_ssl_key_file_path}" -out "${_ssl_cert_file_path}" \
 			-subj "/C=${NGINX_SSL_COUNTRY}/ST=${NGINX_SSL_STATE}/L=${NGINX_SSL_LOC_CITY}/O=${NGINX_SSL_ORG_NAME}/CN=${NGINX_SSL_COM_NAME}" || exit 2
 
-		chown -c 1000:${GROUP} ${_ssl_key_file_path} ${_ssl_cert_file_path} || exit 2
-		chmod -c 660 ${_ssl_key_file_path} ${_ssl_cert_file_path} || exit 2
+		chown -c "1000:${GROUP}" "${_ssl_key_file_path}" "${_ssl_cert_file_path}" || exit 2
+		chmod -c 660 "${_ssl_key_file_path}" "${_ssl_cert_file_path}" || exit 2
 	fi
 	echo -e "SUCCESS: Done.\n"
 
@@ -72,6 +72,7 @@ _httpsLets()
 		mkdir -vp "${NGINX_SSL_DIR}/live" || exit 2
 	fi
 
+	# shellcheck disable=SC2046
 	while [ $(find "${NGINX_SSL_DIR}/live" -name "*.pem" | wc -l) -le 2 ]; do
 		echo "INFO: Waiting for certbot to obtain SSL/TLS files..."
 		sleep 1
@@ -79,7 +80,7 @@ _httpsLets()
 
 	if [ ! -d "/var/www/.well-known/acme-challenge" ]; then
 		mkdir -pv /var/www/.well-known/acme-challenge || exit 2
-		chown -Rc www-data:${GROUP} /var/www/.well-known || exit 2
+		chown -Rc "www-data:${GROUP}" /var/www/.well-known || exit 2
 		find /var/www/.well-known -type d -exec chmod -c 775 {} + || exit 2
 		find /var/www/.well-known -type f -exec chmod -c 664 {} + || exit 2
 		find /var/www/.well-known -type d -exec chmod -c +s {} + || exit 2
@@ -97,12 +98,12 @@ _httpsLets()
 
 main()
 {
-	if [ ! -z "${NGINX_BASIC_AUTH_USER:-}" ] && [ ! -z "${NGINX_BASIC_AUTH_PASS:-}" ]; then
+	if [ -n "${NGINX_BASIC_AUTH_USER:-}" ] && [ -n "${NGINX_BASIC_AUTH_PASS:-}" ]; then
 		if [ ! -f "${NGINX_SSL_DIR}/.htpasswd" ]; then
 			echo "INFO: Creating htpasswd file..."
-			htpasswd -cb "${NGINX_SSL_DIR}/.htpasswd" ${NGINX_BASIC_AUTH_USER} ${NGINX_BASIC_AUTH_PASS} || exit 2
-			chown -c 1000:${GROUP} ${NGINX_SSL_DIR}/.htpasswd || exit 2
-			chmod -c 660 ${NGINX_SSL_DIR}/.htpasswd || exit 2
+			htpasswd -cb "${NGINX_SSL_DIR}/.htpasswd" "${NGINX_BASIC_AUTH_USER}" "${NGINX_BASIC_AUTH_PASS}" || exit 2
+			chown -c "1000:${GROUP}" "${NGINX_SSL_DIR}/.htpasswd" || exit 2
+			chmod -c 660 "${NGINX_SSL_DIR}/.htpasswd" || exit 2
 			echo -e "SUCCESS: Done.\n"
 		fi
 	fi
@@ -116,12 +117,12 @@ main()
 	fi
 
 	echo "INFO: Setting permissions..."
-	chown -R www-data:${GROUP} /var/www || exit 2
+	chown -R "www-data:${GROUP}" /var/www || exit 2
 	find /var/www /var/log/nginx -type d -exec chmod 775 {} + || exit 2
 	find /var/www /var/log/nginx -type f -exec chmod 664 {} + || exit 2
 	find /var/www /var/log/nginx -type d -exec chmod +s {} + || exit 2
 
-	chown -R 1000:${GROUP} /etc/nginx /var/lib/nginx /var/log/nginx || exit 2
+	chown -R "1000:${GROUP}" /etc/nginx /var/lib/nginx /var/log/nginx || exit 2
 	find /etc/nginx /var/lib/nginx -type d -exec chmod 770 {} + || exit 2
 	find /etc/nginx /var/lib/nginx -type f -exec chmod 660 {} + || exit 2
 	find /etc/nginx /var/lib/nginx -type d -exec chmod ug+s {} + || exit 2
@@ -129,8 +130,8 @@ main()
 
 	## Rendering template configs:
 	find "${NGINX_TEMPLATE_DIR}" -follow -type f -name "*${NGINX_TEMPLATE_SUFFIX}" -print | while read -r _template_path; do
-		_template_filename="${_template_path#$NGINX_TEMPLATE_DIR/}"
-		_output_path="${NGINX_SITE_ENABLED_DIR}/${_template_filename%${NGINX_TEMPLATE_SUFFIX}}"
+		_template_filename="${_template_path#"${NGINX_TEMPLATE_DIR}"/}"
+		_output_path="${NGINX_SITE_ENABLED_DIR}/${_template_filename%"${NGINX_TEMPLATE_SUFFIX}"}"
 
 		if [ ! -f "${_output_path}" ]; then
 			echo "INFO: Rendering template -> ${_template_path} -> ${_output_path}"
@@ -142,10 +143,10 @@ main()
 	done
 
 	## Parsing input:
-	case ${1} in
+	case ${1:-} in
 		"" | -n | --nginx | nginx)
-			_runNginx
-			shift;;
+			_runNginx;;
+			# shift;;
 
 		-s=* | --https=*)
 			_https_type="${1#*=}"
@@ -161,16 +162,16 @@ main()
 
 		-b | --bash | bash | /bin/bash)
 			shift
-			if [ -z "${@:-}" ]; then
+			if [ -z "${*:-}" ]; then
 				echo "INFO: Starting bash..."
 				/bin/bash
 			else
-				echo "INFO: Executing command -> ${@}"
+				echo "INFO: Executing command -> ${*}"
 				/bin/bash -c "${@}" || exit 2
 			fi
 			exit 0;;
 		*)
-			echo "ERROR: Failed to parsing input -> ${@}"
+			echo "ERROR: Failed to parsing input -> ${*}"
 			echo "USAGE: ${0} -n, --nginx, nginx | -s=*, --https=* [self | valid | lets] | -b, --bash, bash, /bin/bash"
 			exit 1;;
 	esac
