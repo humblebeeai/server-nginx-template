@@ -29,9 +29,9 @@ RUN rm -rfv /var/lib/apt/lists/* /var/cache/apt/archives/* /tmp/* /root/.cache/*
 		libssl-dev \
 		openssl \
 		libgeoip-dev && \
-	wget -nv --show-progress --progress=bar:force:noscroll https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz -O nginx.tar.gz && \
+	wget -nv --show-progress --progress=bar:force:noscroll "https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz" -O nginx.tar.gz && \
 	tar -xzf nginx.tar.gz && \
-	mv nginx-${NGINX_VERSION} nginx && \
+	mv "nginx-${NGINX_VERSION}" nginx && \
 	cd nginx && \
 	./configure \
 		--sbin-path=/usr/bin/nginx \
@@ -115,15 +115,15 @@ RUN rm -rfv /var/lib/apt/lists/* /var/cache/apt/archives/* /tmp/* /root/.cache/*
 	update-locale LANG=en_US.UTF-8 && \
 	echo "LANGUAGE=en_US.UTF-8" >> /etc/default/locale && \
 	echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale && \
-	addgroup --gid ${GID} ${GROUP} && \
-	# useradd -l -m -d /home/${USER} -s /bin/bash -g ${GROUP} -G sudo -u ${UID} ${USER} && \
+	addgroup --gid "${GID}" "${GROUP}" && \
+	# useradd -l -m -d "/home/${USER}" -s /bin/bash -g "${GROUP}" -G sudo -u "${UID}" "${USER}" && \
 	echo -e "\nalias ls='ls -aF --group-directories-first --color=auto'" >> /root/.bashrc && \
 	echo -e "alias ll='ls -alhF --group-directories-first --color=auto'\n" >> /root/.bashrc && \
 	mkdir -pv /var/lib/nginx /etc/nginx/ssl /etc/nginx/modules-enabled /etc/nginx/sites-enabled /var/log/nginx /var/www/.well-known/acme-challenge && \
-	chown -Rc www-data:${GROUP} /var/www && \
+	chown -Rc "www-data:${GROUP}" /var/www && \
 	find /var/www /var/log/nginx -type d -exec chmod -c 775 {} + && \
 	find /var/www /var/log/nginx -type d -exec chmod -c +s {} + && \
-	chown -Rc 1000:${GROUP} /etc/nginx /var/lib/nginx /var/log/nginx && \
+	chown -Rc "1000:${GROUP}" /etc/nginx /var/lib/nginx /var/log/nginx && \
 	find /etc/nginx /var/lib/nginx -type d -exec chmod -c 770 {} + && \
 	find /etc/nginx /var/lib/nginx -type d -exec chmod -c ug+s {} + && \
 	rm -rfv /var/lib/apt/lists/* /var/cache/apt/archives/* /tmp/* /root/.cache/*
@@ -139,7 +139,7 @@ RUN cd nginx && \
 	make install && \
 	cd .. && \
 	rm -rf nginx
-COPY --chown=1000:${GROUP} --chmod=770 ./configs/ /etc/nginx/
+COPY --chown="1000:${GROUP}" --chmod=770 ./configs/ /etc/nginx/
 
 VOLUME [ "/etc/nginx/ssl" ]
 
