@@ -2,7 +2,7 @@
 set -euo pipefail
 
 
-echo -e "INFO: Running Nginx docker-entrypoint.sh...\n"
+echo -e "INFO: Running nginx docker-entrypoint.sh..."
 
 NGINX_SSL_DIR="${NGINX_SSL_DIR:-/etc/nginx/ssl}"
 NGINX_SSL_KEY_LENGTH=${NGINX_SSL_KEY_LENGTH:-2048}
@@ -73,7 +73,7 @@ _httpsLets()
 	fi
 
 	# shellcheck disable=SC2046
-	while [ $(find "${NGINX_SSL_DIR}/live" -name "*.pem" | wc -l) -le 2 ]; do
+	while [ $(find "${NGINX_SSL_DIR}/live" -name "*.pem" | wc -l) -le 3 ]; do
 		echo "INFO: Waiting for certbot to obtain SSL/TLS files..."
 		sleep 3
 	done
@@ -89,7 +89,7 @@ _httpsLets()
 	_generateDHparam
 
 	echo "INFO: Setting up watcher for SSL/TLS files..."
-	watchman -- trigger "${NGINX_SSL_DIR}/live" cert-update "*.pem" -- /bin/bash -c "nginx -s reload" || exit 2
+	watchman -- trigger "${NGINX_SSL_DIR}/live" cert-update "*.pem" -- /usr/local/bin/nginx-reload.sh || exit 2
 	echo -e "SUCCESS: Done.\n"
 
 	_runNginx
