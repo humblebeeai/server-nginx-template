@@ -51,7 +51,7 @@ _buildImages()
 	# shellcheck disable=SC2086
 	docker build \
 		${IMG_ARGS} \
-		--progress tty \
+		--progress plain \
 		--platform "${IMG_PLATFORM}" \
 		-t "${_IMG_FULLNAME}" \
 		-t "${_IMG_LATEST_FULLNAME}" \
