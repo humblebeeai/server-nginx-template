@@ -8,7 +8,6 @@ version: "3.8"
 #     env_file:
 #       - .env
 #     volumes:
-#       - "./volumes/storage/nginx/configs/sites-enabled:/etc/nginx/sites-enabled"
 #       - "./volumes/storage/nginx/ssl:/etc/nginx/ssl"
 #     deploy:
 #       replicas: 0

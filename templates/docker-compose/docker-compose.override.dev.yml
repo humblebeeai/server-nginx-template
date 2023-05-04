@@ -10,7 +10,6 @@ services:
     volumes:
       - "./scripts/docker/docker-entrypoint.sh:/usr/local/bin/docker-entrypoint.sh"
       - "./configs/nginx.conf:/etc/nginx/nginx.conf"
-      - "./volumes/storage/nginx/configs/sites-enabled:/etc/nginx/sites-enabled"
       # - "./volumes/storage/nginx/ssl:/etc/nginx/ssl"
       - "./volumes/.vscode-server:/root/.vscode-server"
     # deploy:
