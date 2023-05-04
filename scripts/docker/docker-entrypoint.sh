@@ -116,6 +116,22 @@ main()
 		mkdir -pv /var/log/nginx || exit 2
 	fi
 
+	## Rendering template configs:
+	find "${NGINX_TEMPLATE_DIR}" -follow -type f -name "*${NGINX_TEMPLATE_SUFFIX}" -print | while read -r _template_path; do
+		_template_filename="${_template_path#"${NGINX_TEMPLATE_DIR}"/}"
+		_output_path="${NGINX_SITE_ENABLED_DIR}/${_template_filename%"${NGINX_TEMPLATE_SUFFIX}"}"
+
+		if [ -f "${_output_path}" ]; then
+			rm -fv "${_output_path}" || exit 2
+		fi
+
+		echo "INFO: Rendering template -> ${_template_path} -> ${_output_path}"
+		export DOLLAR="$"
+		envsubst < "$_template_path" > "$_output_path" || exit 2
+		unset DOLLAR
+		echo -e "SUCCESS: Done.\n"
+	done
+
 	echo "INFO: Setting permissions..."
 	chown -R "www-data:${GROUP}" /var/www || exit 2
 	find /var/www /var/log/nginx -type d -exec chmod 775 {} + || exit 2
@@ -127,20 +143,6 @@ main()
 	find /etc/nginx /var/lib/nginx -type f -exec chmod 660 {} + || exit 2
 	find /etc/nginx /var/lib/nginx -type d -exec chmod ug+s {} + || exit 2
 	echo -e "SUCCESS: Done.\n"
-
-	## Rendering template configs:
-	find "${NGINX_TEMPLATE_DIR}" -follow -type f -name "*${NGINX_TEMPLATE_SUFFIX}" -print | while read -r _template_path; do
-		_template_filename="${_template_path#"${NGINX_TEMPLATE_DIR}"/}"
-		_output_path="${NGINX_SITE_ENABLED_DIR}/${_template_filename%"${NGINX_TEMPLATE_SUFFIX}"}"
-
-		if [ ! -f "${_output_path}" ]; then
-			echo "INFO: Rendering template -> ${_template_path} -> ${_output_path}"
-			export DOLLAR="$"
-			envsubst < "$_template_path" > "$_output_path" || exit 2
-			unset DOLLAR
-			echo -e "SUCCESS: Done.\n"
-		fi
-	done
 
 	## Parsing input:
 	case ${1:-} in
