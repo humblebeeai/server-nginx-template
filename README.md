@@ -123,8 +123,8 @@ Use template files to configure NGINX:
 ```sh
 # Copy template file into storage directory:
 cp -v ./templates/nginx.conf/[TEMPLATE_BASENAME].conf.template ./volumes/storage/nginx/configs/templates/[CUSTOM_BASENAME].conf.template
-# For example:
-cp -v ./templates/nginx.conf/example.com.https.lets.conf.template ./volumes/storage/nginx/configs/templates/example.com.conf.template
+# For example, Let's Encrypt HTTPS configuration for example.com domain:
+cp -v ./templates/nginx.conf/example.com_https.lets.conf.template ./volumes/storage/nginx/configs/templates/example.com.conf.template
 
 # Edit template file to fit in your nginx configuration:
 nano ./volumes/storage/nginx/configs/templates/[CUSTOM_BASENAME].conf.template
