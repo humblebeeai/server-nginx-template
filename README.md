@@ -151,7 +151,7 @@ Check the service is running:
 docker compose ps
 ```
 
-### 6. Stop docker compose
+### 7. Stop docker compose
 
 ```sh
 ./compose.sh stop
