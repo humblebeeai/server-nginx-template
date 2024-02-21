@@ -52,13 +52,11 @@ git clone https://github.com/bybatkhuu/server.nginx-template.git && \
     cd server.nginx-template
 ```
 
-**B.** Download source code (for **noobs** who don't know about **git** or old stubborn developers who refuse to learn **git**):
+**B.** Download source code:
 
 Download from [releases link](https://github.com/bybatkhuu/server.nginx_template/releases).
 
 ### 3. Configure environment
-
-**TIP:** Skip this step, if you've already configured environment.
 
 > [!TIP]
 > Skip this step, if you've already configured environment.
@@ -119,6 +117,8 @@ docker compose config
 - <https://www.nginx.com/nginx-wiki/build/dirhtml/start/topics/tutorials/config_pitfalls>
 - <https://www.digitalocean.com/community/tools/nginx>
 - <https://github.com/fcambus/nginx-resources>
+
+Use template files to configure NGINX:
 
 ```sh
 # Copy template file into storage directory:
