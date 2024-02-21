@@ -1,6 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
+
 echo "INFO: Running nginx-reload.sh..."
 sleep 2
 nginx -s reload || exit 2

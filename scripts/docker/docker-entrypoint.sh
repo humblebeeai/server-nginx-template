@@ -2,7 +2,7 @@
 set -euo pipefail
 
 
-echo -e "INFO: Running nginx docker-entrypoint.sh..."
+echo "INFO: Running 'nginx' docker-entrypoint.sh..."
 
 NGINX_SSL_DIR="${NGINX_SSL_DIR:-/etc/nginx/ssl}"
 NGINX_SSL_KEY_LENGTH=${NGINX_SSL_KEY_LENGTH:-2048}
@@ -19,8 +19,7 @@ _runNginx()
 	echo -e "SUCCESS: Done.\n"
 
 	echo "INFO: Running nginx..."
-	nginx || exit 2
-
+	exec nginx || exit 2
 	exit 0
 }
 
@@ -169,7 +168,7 @@ main()
 				/bin/bash
 			else
 				echo "INFO: Executing command -> ${*}"
-				/bin/bash -c "${@}" || exit 2
+				exec /bin/bash -c "${@}" || exit 2
 			fi
 			exit 0;;
 		*)

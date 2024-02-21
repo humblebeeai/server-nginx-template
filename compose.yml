@@ -1,8 +1,6 @@
-version: "3.8"
-
 services:
   nginx:
-    image: ${IMG_NAMESCAPE}/nginx:latest
+    image: ${IMG_REGISTRY:-bybatkhuu}/nginx:latest
     build:
       context: .
     restart: unless-stopped
