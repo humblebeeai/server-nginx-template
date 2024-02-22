@@ -144,7 +144,7 @@ FROM base as app
 
 WORKDIR /etc/nginx
 COPY --chown=root:root --chmod=ug+x ./scripts/docker/*.sh /usr/local/bin/
-COPY --chown="1000:${GROUP}" --chmod=770 ./configs/ /etc/nginx/
+COPY --chown="1000:${GROUP}" --chmod=770 ./src/configs/ /etc/nginx/
 
 # VOLUME ["/etc/nginx/ssl"]
 EXPOSE 80 443
