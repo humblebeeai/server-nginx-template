@@ -1,8 +1,8 @@
 # NGINX template
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bybatkhuu/server.nginx_template/2.build-publish.yml?logo=GitHub)](https://github.com/bybatkhuu/server.nginx_template/actions/workflows/2.build-publish.yml)
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/bybatkhuu/server.nginx_template?logo=GitHub)](https://github.com/bybatkhuu/server.nginx_template/releases)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bybatkhuu/server.nginx-template/2.build-publish.yml?logo=GitHub)](https://github.com/bybatkhuu/server.nginx-template/actions/workflows/2.build-publish.yml)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/bybatkhuu/server.nginx-template?logo=GitHub)](https://github.com/bybatkhuu/server.nginx-template/releases)
 [![Docker Image Version](https://img.shields.io/docker/v/bybatkhuu/nginx?sort=semver&logo=docker)](https://hub.docker.com/r/bybatkhuu/nginx/tags)
 [![Docker Image Size](https://img.shields.io/docker/image-size/bybatkhuu/nginx?sort=semver&logo=docker)](https://hub.docker.com/r/bybatkhuu/nginx/tags)
 
@@ -58,7 +58,7 @@ git clone https://github.com/bybatkhuu/server.nginx-template.git && \
     cd server.nginx-template
 ```
 
-**B.** Download source code from [releases](https://github.com/bybatkhuu/server.nginx_template/releases) page.
+**B.** Download source code from [releases](https://github.com/bybatkhuu/server.nginx-template/releases) page.
 
 ### 3. Configure environment
 
