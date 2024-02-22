@@ -29,7 +29,7 @@ This is a NGINX template docker image that can be used as a web server, reverse 
 
 ### 1. Prerequisites
 
-- **Server/PC** to run
+- Prepare **Server/PC** to run
 - Install [**docker**](https://docs.docker.com/engine/install) and [**docker compose**](https://docs.docker.com/compose/install) in **server**
 
 For **DEVELOPMENT**:
@@ -58,9 +58,7 @@ git clone https://github.com/bybatkhuu/server.nginx-template.git && \
     cd server.nginx-template
 ```
 
-**B.** Download source code:
-
-Download from [releases link](https://github.com/bybatkhuu/server.nginx_template/releases).
+**B.** Download source code from [releases](https://github.com/bybatkhuu/server.nginx_template/releases) page.
 
 ### 3. Configure environment
 
