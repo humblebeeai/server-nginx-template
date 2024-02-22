@@ -178,10 +178,6 @@ You can use the following environment variables to configure:
 ## NGINX basic auth username and password:
 NGINX_BASIC_AUTH_USER=nginx_admin
 NGINX_BASIC_AUTH_PASS="NGINX_ADMIN_PASSWORD123" # !!! CHANGE THIS TO RANDOM PASSWORD !!!
-
-## NGINX HTTP and HTTPS ports:
-# NGINX_HTTP_PORT=80
-# NGINX_HTTPS_PORT=443
 ```
 
 ## Arguments

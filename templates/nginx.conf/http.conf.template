@@ -12,8 +12,8 @@ upstream api-server {
 
 ## HTTP:
 server {
-	listen 8080;
-	listen [::]:8080;
+	listen 80;
+	listen [::]:80;
 
 	## Logging:
 	access_log /dev/stdout realip_combined;
