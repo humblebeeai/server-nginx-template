@@ -29,7 +29,7 @@ This is a NGINX template docker image that can be used as a web server, reverse 
 
 ### 1. Prerequisites
 
-- Prepare **Server/PC** to run
+- Prepare **server/PC** to run
 - Install [**docker**](https://docs.docker.com/engine/install) and [**docker compose**](https://docs.docker.com/compose/install) in **server**
 
 For **DEVELOPMENT**:
