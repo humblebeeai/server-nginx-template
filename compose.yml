@@ -8,9 +8,9 @@ services:
       - TERM=${TERM:-xterm}
       - TZ=${TZ:-Asia/Seoul}
     volumes:
+      - "./volumes/storage/nginx/logs:/var/log/nginx"
+      - "./volumes/storage/nginx/www:/var/www"
       - "./volumes/storage/nginx/configs/sites-enabled:/etc/nginx/sites-enabled"
       - "./volumes/storage/nginx/configs/templates:/etc/nginx/templates"
-      - "./volumes/storage/nginx/www:/var/www"
-      - "./volumes/storage/nginx/logs:/var/log/nginx"
     network_mode: host
     tty: true

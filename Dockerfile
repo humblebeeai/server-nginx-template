@@ -14,7 +14,7 @@ ARG NGINX_VERSION
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-WORKDIR "/usr/src/nginx"
+WORKDIR /usr/src/nginx
 
 RUN rm -rfv /var/lib/apt/lists/* /var/cache/apt/archives/* /tmp/* /root/.cache/* && \
 	apt-get clean -y && \
@@ -95,7 +95,7 @@ RUN rm -rfv /var/lib/apt/lists/* /var/cache/apt/archives/* /tmp/* /root/.cache/*
 	apt-get clean -y && \
 	apt-get update --fix-missing -o Acquire::CompressionTypes::Order::=gz && \
 	apt-get install -y --no-install-recommends \
-		sudo \
+		# sudo \
 		locales \
 		tzdata \
 		procps \
@@ -146,7 +146,7 @@ WORKDIR /etc/nginx
 COPY --chown=root:root --chmod=ug+x ./scripts/docker/*.sh /usr/local/bin/
 COPY --chown="1000:${GROUP}" --chmod=770 ./configs/ /etc/nginx/
 
-# VOLUME [ "/etc/nginx/ssl" ]
+# VOLUME ["/etc/nginx/ssl"]
 EXPOSE 80 443
 # HEALTHCHECK --start-period=20s --start-interval=1s --interval=5m --timeout=5s --retries=3 \
 # 	CMD curl -f http://localhost:80 || exit 1
