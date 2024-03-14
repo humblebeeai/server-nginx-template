@@ -147,7 +147,7 @@ COPY --chown=root:root --chmod=ug+x ./scripts/docker/*.sh /usr/local/bin/
 COPY --chown="1000:${GROUP}" --chmod=770 ./src/configs/ /etc/nginx/
 
 # VOLUME ["/etc/nginx/ssl"]
-EXPOSE 80 443
+# EXPOSE 80 443
 # HEALTHCHECK --start-period=20s --start-interval=1s --interval=5m --timeout=5s --retries=3 \
 # 	CMD curl -f http://localhost:80 || exit 1
 
