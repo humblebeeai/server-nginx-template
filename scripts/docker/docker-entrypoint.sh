@@ -132,15 +132,15 @@ main()
 	done
 
 	echo "INFO: Setting permissions..."
-	chown -R "www-data:${GROUP}" /var/www || exit 2
-	find /var/www /var/log/nginx -type d -exec chmod 775 {} + || exit 2
-	find /var/www /var/log/nginx -type f -exec chmod 664 {} + || exit 2
-	find /var/www /var/log/nginx -type d -exec chmod +s {} + || exit 2
+	chown -R "www-data:${GROUP}" /usr/share/nginx/html /var/www || exit 2
+	find /usr/share/nginx/html /var/www /var/log/nginx -type d -exec chmod 775 {} + || exit 2
+	find /usr/share/nginx/html /var/www /var/log/nginx -type f -exec chmod 664 {} + || exit 2
+	find /usr/share/nginx/html /var/www /var/log/nginx -type d -exec chmod +s {} + || exit 2
 
-	chown -R "1000:${GROUP}" /etc/nginx /var/lib/nginx /var/log/nginx || exit 2
-	find /etc/nginx /var/lib/nginx -type d -exec chmod 770 {} + || exit 2
-	find /etc/nginx /var/lib/nginx -type f -exec chmod 660 {} + || exit 2
-	find /etc/nginx /var/lib/nginx -type d -exec chmod ug+s {} + || exit 2
+	chown -R "1000:${GROUP}" /etc/nginx /var/lib/nginx /var/cache/nginx /var/log/nginx || exit 2
+	find /etc/nginx /var/lib/nginx /var/cache/nginx -type d -exec chmod 770 {} + || exit 2
+	find /etc/nginx /var/lib/nginx /var/cache/nginx -type f -exec chmod 660 {} + || exit 2
+	find /etc/nginx /var/lib/nginx /var/cache/nginx -type d -exec chmod ug+s {} + || exit 2
 	echo -e "SUCCESS: Done.\n"
 
 	## Parsing input:
