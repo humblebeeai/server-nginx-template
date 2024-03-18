@@ -42,11 +42,11 @@ RUN wget -nv --show-progress --progress=bar:force:noscroll "https://nginx.org/do
 		--http-log-path=/dev/stdout \
 		--pid-path=/run/nginx.pid \
 		--lock-path=/var/lock/nginx.lock \
-		--http-client-body-temp-path=/var/lib/nginx/body \
-		--http-proxy-temp-path=/var/lib/nginx/proxy \
-		--http-fastcgi-temp-path=/var/lib/nginx/fastcgi \
-		--http-uwsgi-temp-path=/var/lib/nginx/uwsgi \
-		--http-scgi-temp-path=/var/lib/nginx/scgi \
+		--http-client-body-temp-path=/var/cache/nginx/body \
+		--http-proxy-temp-path=/var/cache/nginx/proxy \
+		--http-fastcgi-temp-path=/var/cache/nginx/fastcgi \
+		--http-uwsgi-temp-path=/var/cache/nginx/uwsgi \
+		--http-scgi-temp-path=/var/cache/nginx/scgi \
 		--with-debug \
 		--with-compat \
 		--with-pcre-jit \
@@ -65,7 +65,6 @@ RUN wget -nv --show-progress --progress=bar:force:noscroll "https://nginx.org/do
 		--with-stream_ssl_module \
 		--with-http_mp4_module \
 		--with-http_geoip_module \
-		--without-http_autoindex_module \
 		--without-mail_pop3_module \
 		--without-mail_imap_module \
 		--without-mail_smtp_module && \
@@ -122,13 +121,13 @@ RUN rm -rfv /var/lib/apt/lists/* /var/cache/apt/archives/* /tmp/* /root/.cache/*
 	echo -e "\nalias ls='ls -aF --group-directories-first --color=auto'" >> /root/.bashrc && \
 	echo -e "alias ll='ls -alhF --group-directories-first --color=auto'\n" >> /root/.bashrc && \
 	rm -rfv /var/lib/apt/lists/* /var/cache/apt/archives/* /tmp/* /root/.cache/* && \
-	mkdir -pv /var/lib/nginx /etc/nginx/ssl /etc/nginx/modules-enabled /etc/nginx/sites-enabled /var/log/nginx /var/www/.well-known/acme-challenge && \
-	chown -Rc "www-data:${GROUP}" /var/www && \
-	find /var/www /var/log/nginx -type d -exec chmod -c 775 {} + && \
-	find /var/www /var/log/nginx -type d -exec chmod -c +s {} + && \
-	chown -Rc "1000:${GROUP}" /etc/nginx /var/lib/nginx /var/log/nginx && \
-	find /etc/nginx /var/lib/nginx -type d -exec chmod -c 770 {} + && \
-	find /etc/nginx /var/lib/nginx -type d -exec chmod -c ug+s {} +
+	mkdir -pv /var/lib/nginx /var/cache/nginx /usr/share/nginx/html /etc/nginx/ssl /etc/nginx/modules-enabled /etc/nginx/sites-enabled /var/log/nginx /var/www/.well-known/acme-challenge && \
+	chown -Rc "www-data:${GROUP}" /var/www /usr/share/nginx/html && \
+	find /var/www /usr/share/nginx/html /var/log/nginx -type d -exec chmod -c 775 {} + && \
+	find /var/www /usr/share/nginx/html /var/log/nginx -type d -exec chmod -c +s {} + && \
+	chown -Rc "1000:${GROUP}" /etc/nginx /var/lib/nginx /var/cache/nginx /var/log/nginx && \
+	find /etc/nginx /var/lib/nginx /var/cache/nginx -type d -exec chmod -c 770 {} + && \
+	find /etc/nginx /var/lib/nginx /var/cache/nginx -type d -exec chmod -c ug+s {} +
 
 ENV	LANG=en_US.UTF-8 \
 	LANGUAGE=en_US.UTF-8 \
@@ -144,7 +143,10 @@ FROM base as app
 
 WORKDIR /etc/nginx
 COPY --chown=root:root --chmod=ug+x ./scripts/docker/*.sh /usr/local/bin/
+COPY --chown="www-data:${GROUP}" --chmod=775 ./src/html/ /usr/share/nginx/html/
 COPY --chown="1000:${GROUP}" --chmod=770 ./src/configs/ /etc/nginx/
+RUN < /usr/share/nginx/html/index.html > /usr/local/nginx/html/index.html && \
+	< /usr/share/nginx/html/50x.html > /usr/local/nginx/html/50x.html
 
 # VOLUME ["/etc/nginx/ssl"]
 # EXPOSE 80 443
