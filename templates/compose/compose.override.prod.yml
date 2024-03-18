@@ -1,6 +1,6 @@
 services:
   nginx:
-    image: ${IMG_REGISTRY:-bybatkhuu}/nginx:2.1.2-240314
+    image: ${IMG_REGISTRY:-bybatkhuu}/nginx:2.2.0-240318
     # env_file:
     #   - .env
     # environment:
