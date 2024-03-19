@@ -32,9 +32,12 @@ RUN rm -rfv /var/lib/apt/lists/* /var/cache/apt/archives/* /tmp/* /root/.cache/*
 		openssl \
 		libgeoip-dev
 
+COPY --chown="www-data:${GROUP}" --chmod=775 ./src/html ./html
 RUN wget -nv --show-progress --progress=bar:force:noscroll "https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz" -O nginx.tar.gz && \
 	tar -xzf nginx.tar.gz && \
 	cd nginx-${NGINX_VERSION} && \
+	cat /usr/src/nginx/html/index.html > ./html/index.html && \
+	cat /usr/src/nginx/html/50x.html > ./html/50x.html && \
 	./configure \
 		--sbin-path=/usr/bin/nginx \
 		--conf-path=/etc/nginx/nginx.conf \
@@ -145,8 +148,6 @@ WORKDIR /etc/nginx
 COPY --chown=root:root --chmod=ug+x ./scripts/docker/*.sh /usr/local/bin/
 COPY --chown="www-data:${GROUP}" --chmod=775 ./src/html/ /usr/share/nginx/html/
 COPY --chown="1000:${GROUP}" --chmod=770 ./src/configs/ /etc/nginx/
-RUN < /usr/share/nginx/html/index.html > /usr/local/nginx/html/index.html && \
-	< /usr/share/nginx/html/50x.html > /usr/local/nginx/html/50x.html
 
 # VOLUME ["/etc/nginx/ssl"]
 # EXPOSE 80 443
