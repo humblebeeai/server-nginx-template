@@ -260,8 +260,6 @@ For example as in [**`compose.override.yml`**](https://github.com/bybatkhuu/serv
 
 ## 📑 References
 
-- Docker - <https://docs.docker.com>
-- Docker Compose - <https://docs.docker.com/compose>
 - Download NGINX - <https://nginx.org/en/download.html>
 - Building NGINX from sources - <https://nginx.org/en/docs/configure.html>
 - NGINX documentation - <https://nginx.org/en/docs>
@@ -276,3 +274,5 @@ For example as in [**`compose.override.yml`**](https://github.com/bybatkhuu/serv
 - NGINX fundamental course - <https://www.udemy.com/course/nginx-fundamentals>
 - NGINX resources - <https://github.com/fcambus/nginx-resources>
 - NGINX config environment variables - <https://www.baeldung.com/linux/nginx-config-environment-variables>
+- Docker - <https://docs.docker.com>
+- Docker Compose - <https://docs.docker.com/compose>
