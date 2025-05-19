@@ -145,7 +145,7 @@ RUN --mount=type=bind,from=builder,source=/usr/src/nginx/nginx-${NGINX_VERSION},
 FROM base AS app
 
 WORKDIR /etc/nginx
-COPY --chown=root:root --chmod=ug+x ./scripts/docker/*.sh /usr/local/bin/
+COPY --chown=root:root --chmod=770 ./scripts/docker/*.sh /usr/local/bin/
 COPY --chown="www-data:${GROUP}" --chmod=775 ./src/html/ /usr/share/nginx/html/
 COPY --chown="1000:${GROUP}" --chmod=770 ./src/configs/ /etc/nginx/
 
