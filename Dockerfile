@@ -3,11 +3,11 @@
 ARG BASE_IMAGE=ubuntu:22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG NGINX_VERSION=1.24.0
+ARG NGINX_VERSION=1.28.0
 
 
 # Here is the builder image
-FROM ${BASE_IMAGE} as builder
+FROM ${BASE_IMAGE} AS builder
 
 ARG DEBIAN_FRONTEND
 ARG NGINX_VERSION
@@ -32,7 +32,7 @@ RUN rm -rfv /var/lib/apt/lists/* /var/cache/apt/archives/* /tmp/* /root/.cache/*
 		openssl \
 		libgeoip-dev
 
-COPY --chown="www-data:${GROUP}" --chmod=775 ./src/html ./html
+COPY --chown="www-data:11000" --chmod=775 ./src/html ./html
 RUN wget -nv --show-progress --progress=bar:force:noscroll "https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz" -O nginx.tar.gz && \
 	tar -xzf nginx.tar.gz && \
 	cd nginx-${NGINX_VERSION} && \
@@ -76,7 +76,7 @@ RUN wget -nv --show-progress --progress=bar:force:noscroll "https://nginx.org/do
 
 
 # Here is the base image
-FROM ${BASE_IMAGE} as base
+FROM ${BASE_IMAGE} AS base
 
 ARG DEBIAN_FRONTEND
 ARG NGINX_VERSION
@@ -102,7 +102,7 @@ RUN rm -rfv /var/lib/apt/lists/* /var/cache/apt/archives/* /tmp/* /root/.cache/*
 		tzdata \
 		procps \
 		iputils-ping \
-		net-tools \
+		iproute2 \
 		curl \
 		nano \
 		make \
@@ -142,7 +142,7 @@ RUN --mount=type=bind,from=builder,source=/usr/src/nginx/nginx-${NGINX_VERSION},
 
 
 # Here is the production image
-FROM base as app
+FROM base AS app
 
 WORKDIR /etc/nginx
 COPY --chown=root:root --chmod=ug+x ./scripts/docker/*.sh /usr/local/bin/

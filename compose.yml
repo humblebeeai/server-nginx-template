@@ -1,12 +1,15 @@
 services:
   nginx:
-    image: ${IMG_REGISTRY:-bybatkhuu}/nginx:latest
+    image: bybatkhuu/nginx:latest
     build:
       context: .
     restart: unless-stopped
     environment:
       - TERM=${TERM:-xterm}
       - TZ=${TZ:-Asia/Seoul}
+    env_file:
+      - path: .env
+        required: false
     volumes:
       - "./volumes/storage/nginx/logs:/var/log/nginx"
       - "./volumes/storage/nginx/www:/var/www"

@@ -1,10 +1,5 @@
 services:
   nginx:
-    # env_file:
-    #   - .env
-    # environment:
-    #   - NGINX_BASIC_AUTH_USER=${NGINX_BASIC_AUTH_USER}
-    #   - NGINX_BASIC_AUTH_PASS=${NGINX_BASIC_AUTH_PASS}
     volumes:
       # - "./volumes/storage/nginx/ssl:/etc/nginx/ssl"
       - "./src/configs/nginx.conf:/etc/nginx/nginx.conf"

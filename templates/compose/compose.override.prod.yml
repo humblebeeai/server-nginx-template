@@ -1,11 +1,6 @@
 services:
   nginx:
-    image: ${IMG_REGISTRY:-bybatkhuu}/nginx:2.2.1-240319
-    # env_file:
-    #   - .env
-    # environment:
-    #   - NGINX_BASIC_AUTH_USER=${NGINX_BASIC_AUTH_USER}
-    #   - NGINX_BASIC_AUTH_PASS=${NGINX_BASIC_AUTH_PASS}
+    image: bybatkhuu/nginx:2.2.1-240319
     # volumes:
     #   - "./volumes/storage/nginx/ssl:/etc/nginx/ssl"
     # deploy:
