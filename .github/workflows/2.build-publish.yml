@@ -12,7 +12,7 @@ on:
       - "v*.*.*-*"
 
 env:
-  _VERSION: 3.0.0-250216
+  _VERSION: 0.0.0-250101
 
 jobs:
   build_publish:
@@ -39,26 +39,12 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Get version
         run: echo "_VERSION=$(./scripts/get-version.sh)" >> ${GITHUB_ENV}
-      # - name: Build and export
-      #   uses: docker/build-push-action@v6
-      #   with:
-      #     context: .
-      #     build-args: |
-      #       "HASH_PASSWORD=${{ secrets.DOCKER_UID_HASH_PASSWORD }}"
-      #     load: true
-      #     cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/nginx:cache-latest
-      #     tags: ${{ secrets.DOCKERHUB_USERNAME }}/nginx:test
-      # - name: Test docker image
-      #   run: |
-      #     docker run --rm -dt -p 8000:8000 ${{ secrets.DOCKERHUB_USERNAME }}/nginx:test
-      #     sleep 3
-      #     curl -s http://localhost:8000/api/v1/ping | grep "Pong"
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           context: .
-          platforms: linux/amd64
-          # platforms: linux/amd64,linux/arm64
+          # platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/nginx:cache-latest
           cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/nginx:cache-latest,mode=max
           tags: |
