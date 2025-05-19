@@ -1,6 +1,6 @@
 services:
   nginx:
-    image: bybatkhuu/nginx:2.2.1-240319
+    image: bybatkhuu/nginx:3.0.1-250519
     # volumes:
     #   - "./volumes/storage/nginx/ssl:/etc/nginx/ssl"
     # deploy:
