@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-ARG BASE_IMAGE=ubuntu:24.04
+ARG BASE_IMAGE=ubuntu:22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG NGINX_VERSION=1.28.0
@@ -119,7 +119,7 @@ RUN rm -rfv /var/lib/apt/lists/* /var/cache/apt/archives/* /tmp/* /root/.cache/*
 	update-locale LANG=en_US.UTF-8 && \
 	echo "LANGUAGE=en_US.UTF-8" >> /etc/default/locale && \
 	echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale && \
-	groupadd --gid "${GID}" "${GROUP}" && \
+	addgroup --gid "${GID}" "${GROUP}" && \
 	# useradd -lmN -d "/home/${USER}" -s /bin/bash -g "${GROUP}" -G sudo -u "${UID}" "${USER}" && \
 	echo -e "\nalias ls='ls -aF --group-directories-first --color=auto'" >> /root/.bashrc && \
 	echo -e "alias ll='ls -alhF --group-directories-first --color=auto'\n" >> /root/.bashrc && \

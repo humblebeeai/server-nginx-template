@@ -19,6 +19,7 @@
 		"wengerk.highlight-bad-chars",
 		"nhoizey.gremlins",
 		"tamasfe.even-better-toml",
-		"jeff-hykin.better-dockerfile-syntax"
+		"jeff-hykin.better-dockerfile-syntax",
+		"ahmadalli.vscode-nginx-conf"
 	]
 }
