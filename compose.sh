@@ -119,6 +119,11 @@ _doExec()
 	docker compose exec "${_DEFAULT_SERVICE}" ${@} || exit 2
 }
 
+_doReload()
+{
+	docker compose exec "${_DEFAULT_SERVICE}" /bin/bash -c "nginx -t && nginx -s reload" || exit 2
+}
+
 _doEnter()
 {
 	local _service="${_DEFAULT_SERVICE}"
@@ -161,7 +166,7 @@ _doUpdate()
 ## --- Menu arguments --- ##
 _exitOnWrongParams()
 {
-	echo "[INFO]: USAGE: ${0}  build | validate | start | stop | restart | logs | list | ps | stats | exec | enter | images | clean | update"
+	echo "[INFO]: USAGE: ${0}  build | validate | start | stop | restart | logs | list | ps | stats | exec | reload | enter | images | clean | update"
 	exit 1
 }
 
@@ -202,6 +207,9 @@ main()
 		exec)
 			shift
 			_doExec "${@:-}";;
+		reload)
+			shift
+			_doReload;;
 		enter)
 			shift
 			_doEnter "${@:-}";;
