@@ -157,9 +157,9 @@ docker compose up -d --remove-orphans --force-recreate && \
     docker compose logs -f --tail 100
 ```
 
-### 5. 📡 Check service is running and monitor logs
+### 6. 📡 Check service is running and monitor logs
 
-📋 Check service are running:
+📋 Check service is running:
 
 ```sh
 ./compose.sh list
