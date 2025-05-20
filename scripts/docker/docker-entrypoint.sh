@@ -172,7 +172,7 @@ main()
 			fi
 			exit 0;;
 		*)
-			echo "ERROR: Failed to parsing input -> ${*}"
+			echo "ERROR: Failed to parse input -> ${*}"
 			echo "USAGE: ${0} -n, --nginx, nginx | -s=*, --https=* [self | valid | lets] | -b, --bash, bash, /bin/bash"
 			exit 1;;
 	esac
