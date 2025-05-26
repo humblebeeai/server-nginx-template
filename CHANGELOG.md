@@ -1,5 +1,16 @@
 # Changelog
 
+## v3.0.4-250526 (2025-05-26)
+
+<!-- Release notes generated using configuration in .github/release.yml at v3.0.4-250526 -->
+
+## What's Changed
+### 🐛 Fixes
+* :hammer: standardize log messages in nginx entrypoint and reload scri… by @bybatkhuu in https://github.com/bybatkhuu/server.nginx-template/pull/21
+
+
+**Full Changelog**: https://github.com/bybatkhuu/server.nginx-template/compare/v3.0.3-250526...v3.0.4-250526
+
 ## v3.0.3-250526 (2025-05-26)
 
 <!-- Release notes generated using configuration in .github/release.yml at v3.0.3-250526 -->
