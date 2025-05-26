@@ -12,3 +12,5 @@ fi
 
 echo -e "reloaded_dtime: $(date "+%Y-%m-%dT%H:%M:%S%z")" >> /var/log/nginx/nginx_reload.log || exit 2
 echo -e "SUCCESS: Done.\n"
+
+exit 0
