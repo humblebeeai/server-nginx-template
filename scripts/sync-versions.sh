@@ -74,7 +74,7 @@ main()
 	_current_version="$(./scripts/get-version.sh)" || exit 2
 	echo "[INFO]: Synching '${SERVICE_NAME}' service image version to: '${IMG_NAME}:${_current_version}' ..."
 	yq -i ".services.${SERVICE_NAME}.image = \"${IMG_NAME}:${_current_version}\"" "${COMPOSE_FILE_PATH}"
-	echo "[INFO]: Done."
+	echo "[OK]: Done."
 
 	if [ "${_IS_ADD}" == true ]; then
 		git add "${COMPOSE_FILE_PATH}" || exit 2
