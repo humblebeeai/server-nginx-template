@@ -1,5 +1,16 @@
 # Changelog
 
+## v3.0.3-250526 (2025-05-26)
+
+<!-- Release notes generated using configuration in .github/release.yml at v3.0.3-250526 -->
+
+## What's Changed
+### 🐛 Fixes
+* fix: ensure proper exit status handling in nginx-reload script by @bybatkhuu in https://github.com/bybatkhuu/server.nginx-template/pull/20
+
+
+**Full Changelog**: https://github.com/bybatkhuu/server.nginx-template/compare/v3.0.2-250520...v3.0.3-250526
+
 ## v3.0.2-250520 (2025-05-20)
 
 <!-- Release notes generated using configuration in .github/release.yml at v3.0.2-250520 -->
