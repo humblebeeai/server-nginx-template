@@ -2,7 +2,7 @@
 set -euo pipefail
 
 
-echo "INFO: Running 'nginx' docker-entrypoint.sh..."
+echo "[INFO]: Running 'nginx' docker-entrypoint.sh..."
 
 NGINX_SSL_DIR="${NGINX_SSL_DIR:-/etc/nginx/ssl}"
 NGINX_SSL_KEY_LENGTH=${NGINX_SSL_KEY_LENGTH:-2048}
@@ -14,11 +14,11 @@ NGINX_SITE_ENABLED_DIR="${NGINX_SITE_ENABLED_DIR:-/etc/nginx/sites-enabled}"
 
 _runNginx()
 {
-	echo "INFO: Testing nginx..."
+	echo "[INFO]: Testing nginx..."
 	nginx -t || exit 2
-	echo -e "SUCCESS: Done.\n"
+	echo -e "[OK]: Done.\n"
 
-	echo "INFO: Running nginx..."
+	echo "[INFO]: Running nginx..."
 	exec nginx || exit 2
 	exit 0
 }
@@ -28,12 +28,12 @@ _generateDHparam()
 {
 	_dhparam_file_path="${NGINX_SSL_DIR}/${NGINX_DHPARAM_FILENAME}"
 	if [ ! -f "${_dhparam_file_path}" ]; then
-		echo "INFO: Generating Diffie-Hellman parameters..."
+		echo "[INFO]: Generating Diffie-Hellman parameters..."
 		openssl dhparam -out "${_dhparam_file_path}" "${NGINX_SSL_KEY_LENGTH}" || exit 2
 
 		chown -c "1000:${GROUP}" "${_dhparam_file_path}" || exit 2
 		chmod -c 660 "${_dhparam_file_path}" || exit 2
-		echo -e "SUCCESS: Done.\n"
+		echo -e "[OK]: Done.\n"
 	fi
 }
 
@@ -41,7 +41,7 @@ _httpsSelf()
 {
 	_generateDHparam
 
-	echo "INFO: Preparing self-signed SSL..."
+	echo "[INFO]: Preparing self-signed SSL..."
 	NGINX_SSL_COUNTRY=${NGINX_SSL_COUNTRY:-KR}
 	NGINX_SSL_STATE=${NGINX_SSL_STATE:-SEOUL}
 	NGINX_SSL_LOC_CITY=${NGINX_SSL_LOC_CITY:-Seoul}
@@ -60,7 +60,7 @@ _httpsSelf()
 		chown -c "1000:${GROUP}" "${_ssl_key_file_path}" "${_ssl_cert_file_path}" || exit 2
 		chmod -c 660 "${_ssl_key_file_path}" "${_ssl_cert_file_path}" || exit 2
 	fi
-	echo -e "SUCCESS: Done.\n"
+	echo -e "[OK]: Done.\n"
 
 	_runNginx
 }
@@ -73,7 +73,7 @@ _httpsLets()
 
 	# shellcheck disable=SC2046
 	while [ $(find "${NGINX_SSL_DIR}/live" -name "*.pem" | wc -l) -le 3 ]; do
-		echo "INFO: Waiting for certbot to obtain SSL/TLS files..."
+		echo "[INFO]: Waiting for certbot to obtain SSL/TLS files..."
 		sleep 3
 	done
 
@@ -87,9 +87,9 @@ _httpsLets()
 
 	_generateDHparam
 
-	echo "INFO: Setting up watcher for SSL/TLS files..."
+	echo "[INFO]: Setting up watcher for SSL/TLS files..."
 	watchman -- trigger "${NGINX_SSL_DIR}/live" cert-update "*.pem" -- /usr/local/bin/nginx-reload.sh || exit 2
-	echo -e "SUCCESS: Done.\n"
+	echo -e "[OK]: Done.\n"
 
 	_runNginx
 }
@@ -99,11 +99,11 @@ main()
 {
 	if [ -n "${NGINX_BASIC_AUTH_USER:-}" ] && [ -n "${NGINX_BASIC_AUTH_PASS:-}" ]; then
 		if [ ! -f "${NGINX_SSL_DIR}/.htpasswd" ]; then
-			echo "INFO: Creating htpasswd file..."
+			echo "[INFO]: Creating htpasswd file..."
 			htpasswd -cb "${NGINX_SSL_DIR}/.htpasswd" "${NGINX_BASIC_AUTH_USER}" "${NGINX_BASIC_AUTH_PASS}" || exit 2
 			chown -c "1000:${GROUP}" "${NGINX_SSL_DIR}/.htpasswd" || exit 2
 			chmod -c 660 "${NGINX_SSL_DIR}/.htpasswd" || exit 2
-			echo -e "SUCCESS: Done.\n"
+			echo -e "[OK]: Done.\n"
 		fi
 	fi
 
@@ -124,14 +124,14 @@ main()
 			rm -fv "${_output_path}" || exit 2
 		fi
 
-		echo "INFO: Rendering template -> ${_template_path} -> ${_output_path}"
+		echo "[INFO]: Rendering template -> ${_template_path} -> ${_output_path}"
 		export DOLLAR="$"
 		envsubst < "$_template_path" > "$_output_path" || exit 2
 		unset DOLLAR
-		echo -e "SUCCESS: Done.\n"
+		echo -e "[OK]: Done.\n"
 	done
 
-	echo "INFO: Setting permissions..."
+	echo "[INFO]: Setting permissions..."
 	chown -R "www-data:${GROUP}" /usr/share/nginx/html /var/www || exit 2
 	find /usr/share/nginx/html /var/www /var/log/nginx -type d -exec chmod 775 {} + || exit 2
 	find /usr/share/nginx/html /var/www /var/log/nginx -type f -exec chmod 664 {} + || exit 2
@@ -141,7 +141,7 @@ main()
 	find /etc/nginx /var/lib/nginx /var/cache/nginx -type d -exec chmod 770 {} + || exit 2
 	find /etc/nginx /var/lib/nginx /var/cache/nginx -type f -exec chmod 660 {} + || exit 2
 	find /etc/nginx /var/lib/nginx /var/cache/nginx -type d -exec chmod ug+s {} + || exit 2
-	echo -e "SUCCESS: Done.\n"
+	echo -e "[OK]: Done.\n"
 
 	## Parsing input:
 	case ${1:-} in
@@ -164,16 +164,16 @@ main()
 		-b | --bash | bash | /bin/bash)
 			shift
 			if [ -z "${*:-}" ]; then
-				echo "INFO: Starting bash..."
+				echo "[INFO]: Starting bash..."
 				/bin/bash
 			else
-				echo "INFO: Executing command -> ${*}"
+				echo "[INFO]: Executing command -> ${*}"
 				exec /bin/bash -c "${@}" || exit 2
 			fi
 			exit 0;;
 		*)
-			echo "ERROR: Failed to parse input -> ${*}"
-			echo "USAGE: ${0} -n, --nginx, nginx | -s=*, --https=* [self | valid | lets] | -b, --bash, bash, /bin/bash"
+			echo "[ERROR]: Failed to parse input -> ${*}"
+			echo "[INFO]: USAGE: ${0} -n, --nginx, nginx | -s=*, --https=* [self | valid | lets] | -b, --bash, bash, /bin/bash"
 			exit 1;;
 	esac
 }
