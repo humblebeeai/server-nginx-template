@@ -1,5 +1,16 @@
 # Changelog
 
+## v3.0.6-250528 (2025-05-28)
+
+<!-- Release notes generated using configuration in .github/release.yml at v3.0.6-250528 -->
+
+## What's Changed
+### 🐛 Fixes
+* :fire: Remove 499 error page and its configuration; disable SSL stapl… by @bybatkhuu in https://github.com/bybatkhuu/server.nginx-template/pull/23
+
+
+**Full Changelog**: https://github.com/bybatkhuu/server.nginx-template/compare/v3.0.5-250528...v3.0.6-250528
+
 ## v3.0.5-250528 (2025-05-28)
 
 <!-- Release notes generated using configuration in .github/release.yml at v3.0.5-250528 -->
