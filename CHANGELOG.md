@@ -1,5 +1,16 @@
 # Changelog
 
+## v3.0.5-250528 (2025-05-28)
+
+<!-- Release notes generated using configuration in .github/release.yml at v3.0.5-250528 -->
+
+## What's Changed
+### 🐛 Fixes
+* :wrench: Add custom error pages for 444 and 499 status codes and upda… by @bybatkhuu in https://github.com/bybatkhuu/server.nginx-template/pull/22
+
+
+**Full Changelog**: https://github.com/bybatkhuu/server.nginx-template/compare/v3.0.4-250526...v3.0.5-250528
+
 ## v3.0.4-250526 (2025-05-26)
 
 <!-- Release notes generated using configuration in .github/release.yml at v3.0.4-250526 -->
