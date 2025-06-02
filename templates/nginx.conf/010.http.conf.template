@@ -45,7 +45,7 @@ server {
 	# 	internal;
 	# }
 
-	# include /etc/nginx/conf.d/error-pages.conf;
+	include /etc/nginx/conf.d/error-pages.conf;
 
 	## Sub-path as static files:
 	# location ^~ /demo {
@@ -61,7 +61,7 @@ server {
 
 		## Proxy headers:
 		include /etc/nginx/conf.d/proxy.conf;
-		include /etc/nginx/conf.d/proxy-timeout.conf;
+		# include /etc/nginx/conf.d/proxy-timeout.conf;
 		include /etc/nginx/conf.d/api-headers.conf;
 
 		proxy_pass http://api-server;
