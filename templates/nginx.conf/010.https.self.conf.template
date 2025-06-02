@@ -51,7 +51,7 @@ server {
 	# 	internal;
 	# }
 
-	include /etc/nginx/conf.d/error-pages.conf;
+	# include /etc/nginx/conf.d/error-pages.conf;
 
 	## Sub-path as static files:
 	# location ^~ /demo {
