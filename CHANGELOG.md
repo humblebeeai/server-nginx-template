@@ -1,5 +1,16 @@
 # Changelog
 
+## v3.0.8-250702 (2025-07-02)
+
+<!-- Release notes generated using configuration in .github/release.yml at v3.0.8-250702 -->
+
+## What's Changed
+### 👷 CI/CD
+* :hammer::green_heart: Refactor GitHub Actions workflows and scripts f… by @bybatkhuu in https://github.com/bybatkhuu/server.nginx-template/pull/25
+
+
+**Full Changelog**: https://github.com/bybatkhuu/server.nginx-template/compare/v3.0.7-250605...v3.0.8-250702
+
 ## v3.0.7-250605 (2025-06-05)
 
 <!-- Release notes generated using configuration in .github/release.yml at v3.0.7-250605 -->
