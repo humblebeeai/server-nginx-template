@@ -1,0 +1,87 @@
+## HTTP redirect:
+server {
+	listen ${NGINX_HTTP_PORT};
+	listen [::]:${NGINX_HTTP_PORT};
+
+	location / {
+		return 301 https://${DOLLAR}host${DOLLAR}request_uri;
+	}
+}
+
+## Upstream for proxy_pass:
+upstream ${API_UPSTREAM_NAME} {
+	server ${API_HOST}:${API_PORT};
+
+	## Or Load Balancing:
+	# least_conn;
+	# hash ${DOLLAR}binary_remote_addr consistent;
+	# server ${API_HOST}:8000;
+	# server ${API_HOST}:8001;
+	# server ${API_HOST}:8002;
+}
+
+## HTTPS:
+server {
+	listen ${NGINX_HTTPS_PORT} ssl;
+	listen [::]:${NGINX_HTTPS_PORT} ssl;
+	http2 on;
+
+	## Logging:
+	access_log /dev/stdout realip_combined if=${DOLLAR}loggable;
+	access_log /var/log/nginx/access.${DOLLAR}map_date_now.log realip_combined if=${DOLLAR}loggable;
+	access_log /var/log/nginx/access.json.${DOLLAR}map_date_now.log json_combined if=${DOLLAR}loggable;
+	# access_log /var/log/nginx/access.json.${DOLLAR}map_date_now.log cf_json_combined if=${DOLLAR}loggable;
+
+	## Restrict methods:
+	if (${DOLLAR}request_method ~ ^(TRACE)${DOLLAR}) {
+		return 405;
+	}
+
+	## SSL:
+	include /etc/nginx/conf.d/ssl.conf;
+	ssl_certificate /etc/nginx/ssl/self.crt;
+	ssl_certificate_key /etc/nginx/ssl/self.key;
+
+	## Security headers:
+	include /etc/nginx/conf.d/security-headers.conf;
+
+	## Additional configs:
+	include /etc/nginx/conf.d/general.conf;
+	include /etc/nginx/conf.d/well-known.conf;
+
+	## Static files:
+	root /var/www/web/public;
+
+	location / {
+		try_files ${DOLLAR}uri ${DOLLAR}uri.html ${DOLLAR}uri/ =404;
+	}
+
+	# error_page 404 /404.html;
+	# location = /404.html {
+	# 	internal;
+	# }
+
+	# include /etc/nginx/conf.d/error-pages.conf;
+
+	## Sub-path as static files:
+	# location ^~ /demo {
+	# 	alias /var/www/demo/public;
+	# 	try_files ${_DOLLAR}uri ${_DOLLAR}uri/ =404;
+	# }
+
+	location ^~ /api {
+		rewrite ^/api/(.*)${DOLLAR} /${DOLLAR}1?${DOLLAR}args break;
+
+		## Cloudflare headers:
+		# include /etc/nginx/conf.d/cloudflare/proxy.conf;
+
+		## Proxy headers:
+		include /etc/nginx/conf.d/proxy.conf;
+		# include /etc/nginx/conf.d/proxy-timeout.conf;
+		include /etc/nginx/conf.d/api-headers.conf;
+
+		proxy_pass http://${API_UPSTREAM_NAME};
+	}
+
+	# include /etc/nginx/conf.d/status.conf;
+}
