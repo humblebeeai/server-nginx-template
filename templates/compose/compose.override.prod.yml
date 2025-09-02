@@ -1,6 +1,6 @@
 services:
   nginx:
-    image: bybatkhuu/nginx:3.0.8-250702
+    image: bybatkhuu/nginx:3.0.9-250902
     # volumes:
     #   - "./volumes/storage/nginx/configs/nginx.conf:/etc/nginx/nginx.conf"
     #   - "./volumes/storage/nginx/ssl:/etc/nginx/ssl"
