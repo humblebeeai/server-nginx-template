@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://nginx-docs.bybatkhuu.dev/3.0/docker-build/">
+        <link rel="canonical" href="https://nginx-docs.bybatkhuu.dev/3.0/release-notes/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../docker-build/">
       
       
-        <link rel="next" href="../release-notes/">
+        <link rel="next" href="../scripts/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Build and publish docker image - NGINX Template</title>
+        <title>Release Notes - NGINX Template</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#build-and-publish-docker-image" class="md-skip">
+        <a href="#release-notes" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Build and publish docker image
+              Release Notes
             
           </span>
         </div>
@@ -254,11 +254,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../docker-build/" class="md-tabs__link">
         
   
   
@@ -275,9 +273,11 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../release-notes/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
   
@@ -320,7 +320,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -380,6 +382,28 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Build and publish docker image
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -397,7 +421,7 @@
   
   
   <span class="md-ellipsis">
-    Build and publish docker image
+    Release Notes
     
   </span>
   
@@ -410,7 +434,7 @@
   
   
   <span class="md-ellipsis">
-    Build and publish docker image
+    Release Notes
     
   </span>
   
@@ -433,20 +457,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#build-and-push-image" class="md-nav__link">
+  <a href="#v309-250902-2025-09-02" class="md-nav__link">
     <span class="md-ellipsis">
-      Build and push image
+      v3.0.9-250902 (2025-09-02)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
+  <a href="#whats-changed" class="md-nav__link">
     <span class="md-ellipsis">
-      References
+      What's Changed
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="What&#39;s Changed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Documentation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -454,28 +493,6 @@
   
 </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../release-notes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Release Notes
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -510,6 +527,8 @@
             
             
               
+                
+              
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
@@ -529,20 +548,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#build-and-push-image" class="md-nav__link">
+  <a href="#v309-250902-2025-09-02" class="md-nav__link">
     <span class="md-ellipsis">
-      Build and push image
+      v3.0.9-250902 (2025-09-02)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
+  <a href="#whats-changed" class="md-nav__link">
     <span class="md-ellipsis">
-      References
+      What's Changed
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="What&#39;s Changed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Documentation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -559,107 +593,24 @@
               <article class="md-content__inner md-typeset">
                 
                   
+  
+
 
 
   
   
 
 
-<h1 id="build-and-publish-docker-image">Build and publish docker image</h1>
-<h2 id="build-and-push-image">Build and push image</h2>
-<p><strong>A.</strong> <strong>[RECOMMENDED]</strong> Run <strong><code>build.sh</code></strong> script to build images:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Run build script:</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>./scripts/build.sh
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># -p=PLATFORM, --platform=PLATFORM          Build image type [amd64 | arm64]. Default is current platform.</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># -u, --push-images                         Enable pushing built images to Docker Registry.</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># -c, --clean-images                        Enable clearning leftover images.</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># -x, --cross-compile                       Enable cross compiling.</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># -b=BASE_IMAGE, --base-image=BASE_IMAGE    Base image name. Default is &quot;ubuntu:22.04&quot;.</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># -g=REGISTRY, --registry=REGISTRY          Docker image registry (docker registry and username). Default is &quot;bybatkhuu&quot;.</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># -r=REPO, --repo=REPO                      Docker image repository. Default is &quot;nginx&quot;.</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># -v=VERSION, --version=VERSION             Docker image version. Default read from &quot;app/__version__.py&quot; file.</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># -s=SUBTAG, --subtag=SUBTAG                Docker image subtag. Default is &quot;&quot;.</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1"># For example:</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>./scripts/build.sh<span class="w"> </span>-p<span class="o">=</span>arm64<span class="w"> </span>-u<span class="w"> </span>-c
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="c1"># Or:</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>./scripts/build.sh<span class="w"> </span>-x
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="c1"># Or:</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>./scripts/build.sh<span class="w"> </span>-p<span class="o">=</span>arm64<span class="w"> </span>-b<span class="o">=</span>ubuntu:22.04<span class="w"> </span>-n<span class="o">=</span>bybatkhuu<span class="w"> </span>-r<span class="o">=</span>nginx<span class="w"> </span>-v<span class="o">=</span><span class="m">1</span>.0.0<span class="w"> </span>-s<span class="o">=</span>-arm64<span class="w"> </span>-u<span class="w"> </span>-c
-</span></code></pre></div>
-<p><strong>B.</strong> Or docker build command:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Build image:</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span>build<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="o">[</span>IMG_ARGS<span class="o">]</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span>--progress<span class="w"> </span>plain<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span>--platform<span class="w"> </span><span class="o">[</span>PLATFORM<span class="o">]</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span>-t<span class="w"> </span>$<span class="o">[</span>IMG_FULLNAME<span class="o">]</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span>.
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># For example:</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>docker<span class="w"> </span>build<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span>--progress<span class="w"> </span>plain<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span>-t<span class="w"> </span>bybatkhuu/nginx:latest<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span>.
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="c1"># Push image to Docker Registry:</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>docker<span class="w"> </span>push<span class="w"> </span><span class="o">[</span>IMG_FULLNAME<span class="o">]</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="c1"># For example:</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>docker<span class="w"> </span>push<span class="w"> </span>bybatkhuu/nginx:latest
-</span></code></pre></div>
-<p><strong>C.</strong> Or docker buildx command (<strong>cross-compile</strong>):</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Create new builder:</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>docker<span class="w"> </span>buildx<span class="w"> </span>create<span class="w"> </span>--driver<span class="w"> </span>docker-container<span class="w"> </span>--bootstrap<span class="w"> </span>--use<span class="w"> </span>--name<span class="w"> </span>new_builder
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Build images and push to Docker Registry:</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="o">[</span>IMG_ARGS<span class="o">]</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span>--progress<span class="w"> </span>plain<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span>--platform<span class="w"> </span>linux/amd64,linux/arm64<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span>--cache-from<span class="o">=</span><span class="nv">type</span><span class="o">=</span>registry,ref<span class="o">=[</span>IMG_NAME<span class="o">]</span>:cache-latest<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span>--cache-to<span class="o">=</span><span class="nv">type</span><span class="o">=</span>registry,ref<span class="o">=[</span>IMG_NAME<span class="o">]</span>:cache-latest,mode<span class="o">=</span>max<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span>-t<span class="w"> </span><span class="o">[</span>IMG_FULLNAME<span class="o">]</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span>--push<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span>.
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="c1"># For example:</span>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">    </span>--progress<span class="w"> </span>plain<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span>--platform<span class="w"> </span>linux/amd64,linux/arm64<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span>--cache-from<span class="o">=</span><span class="nv">type</span><span class="o">=</span>registry,ref<span class="o">=</span>bybatkhuu/nginx:cache-latest<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">    </span>--cache-to<span class="o">=</span><span class="nv">type</span><span class="o">=</span>registry,ref<span class="o">=</span>bybatkhuu/nginx:cache-latest,mode<span class="o">=</span>max<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">    </span>-t<span class="w"> </span>bybatkhuu/nginx:latest<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">    </span>--push<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">    </span>.
-</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>
-</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="c1"># Remove builder:</span>
-</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>docker<span class="w"> </span>buildx<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>new_builder
-</span></code></pre></div>
-<p><strong>D.</strong> Or docker-compose build command:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Build image:</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>docker-compose<span class="w"> </span>build
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Push image to Docker Registry:</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>docker-compose<span class="w"> </span>push
-</span></code></pre></div>
-<p><img alt="👍" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f44d.svg" title=":thumbsup:" /> <img alt="✨" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2728.svg" title=":sparkles:" /></p>
-<hr />
-<h2 id="references">References</h2>
+<h1 id="release-notes">📌 Release Notes</h1>
+<h2 id="v309-250902-2025-09-02">v3.0.9-250902 (2025-09-02)</h2>
+<!-- Release notes generated using configuration in .github/release.yml at v3.0.9-250902 -->
+
+<h2 id="whats-changed">What's Changed</h2>
+<h3 id="documentation">📝 Documentation</h3>
 <ul>
-<li><a href="https://docs.docker.com/engine/reference/commandline/build">https://docs.docker.com/engine/reference/commandline/build</a></li>
-<li><a href="https://docs.docker.com/get-started/02_our_app">https://docs.docker.com/get-started/02_our_app</a></li>
-<li><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices">https://docs.docker.com/develop/develop-images/dockerfile_best-practices</a></li>
-<li><a href="https://docs.docker.com/language/python/build-images">https://docs.docker.com/language/python/build-images</a></li>
-<li><a href="https://codefresh.io/docker-tutorial/build-docker-image-dockerfiles">https://codefresh.io/docker-tutorial/build-docker-image-dockerfiles</a></li>
-<li><a href="https://learnk8s.io/blog/smaller-docker-images">https://learnk8s.io/blog/smaller-docker-images</a></li>
-<li><a href="https://phoenixnap.com/kb/docker-image-size">https://phoenixnap.com/kb/docker-image-size</a></li>
-<li><a href="https://semaphoreci.com/blog/2016/12/13/lightweight-docker-images-in-5-steps.html">https://semaphoreci.com/blog/2016/12/13/lightweight-docker-images-in-5-steps.html</a></li>
-<li><a href="https://medium.com/@gdiener/how-to-build-a-smaller-docker-image-76779e18d48a">https://medium.com/@gdiener/how-to-build-a-smaller-docker-image-76779e18d48a</a></li>
+<li><img alt="✨" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2728.svg" title=":sparkles:" /> Add CODEOWNERS and Dependabot configuration; update workfl… by @bybatkhuu in https://github.com/bybatkhuu/server.nginx-template/pull/26</li>
 </ul>
+<p><strong>Full Changelog</strong>: https://github.com/bybatkhuu/server.nginx-template/compare/v3.0.8-250702...v3.0.9-250902</p>
 
 
 
@@ -667,8 +618,13 @@
 
 
 
+  
+  
 
 
+
+
+  
 
 
 
@@ -692,10 +648,12 @@
   
     
       
+        
+      
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Documentation">
+          <a href="../docker-build/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Build and publish docker image">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -705,20 +663,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Documentation
+                Build and publish docker image
               </div>
             </div>
           </a>
         
         
           
-          <a href="../release-notes/" class="md-footer__link md-footer__link--next" aria-label="Next: Release Notes">
+          <a href="../scripts/" class="md-footer__link md-footer__link--next" aria-label="Next: Script files">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Release Notes
+                Script files
               </div>
             </div>
             <div class="md-footer__button md-icon">
