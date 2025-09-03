@@ -1,5 +1,13 @@
 # Changelog
 
+## v3.1.0-250903 (2025-09-03)
+
+<!-- Release notes generated using configuration in .github/release.yml at v3.1.0-250903 -->
+
+
+
+**Full Changelog**: https://github.com/bybatkhuu/server.nginx-template/compare/v3.0.9-250902...v3.1.0-250903
+
 ## v3.0.9-250902 (2025-09-02)
 
 <!-- Release notes generated using configuration in .github/release.yml at v3.0.9-250902 -->
