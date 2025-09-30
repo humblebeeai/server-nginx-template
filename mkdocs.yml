@@ -1,8 +1,8 @@
 site_name: NGINX Template
 site_description: "This is a NGINX template docker image that can be used as a web server, reverse proxy, load balancer and HTTP cache."
 site_url: https://nginx-docs.bybatkhuu.dev
-repo_name: bybatkhuu/server.nginx-template
-repo_url: https://github.com/bybatkhuu/server.nginx-template
+repo_name: bybatkhuu/server-nginx-template
+repo_url: https://github.com/bybatkhuu/server-nginx-template
 theme:
   name: material
   # name: readthedocs

@@ -1,8 +1,8 @@
 # NGINX template
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bybatkhuu/server.nginx-template/2.build-publish.yml?logo=GitHub)](https://github.com/bybatkhuu/server.nginx-template/actions/workflows/2.build-publish.yml)
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/bybatkhuu/server.nginx-template?logo=GitHub)](https://github.com/bybatkhuu/server.nginx-template/releases)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bybatkhuu/server-nginx-template/2.build-publish.yml?logo=GitHub)](https://github.com/bybatkhuu/server-nginx-template/actions/workflows/2.build-publish.yml)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/bybatkhuu/server-nginx-template?logo=GitHub)](https://github.com/bybatkhuu/server-nginx-template/releases)
 [![Docker Image Version](https://img.shields.io/docker/v/bybatkhuu/nginx?sort=semver&logo=docker)](https://hub.docker.com/r/bybatkhuu/nginx/tags)
 [![Docker Image Size](https://img.shields.io/docker/image-size/bybatkhuu/nginx?sort=semver&logo=docker)](https://hub.docker.com/r/bybatkhuu/nginx/tags)
 
@@ -55,18 +55,18 @@ cd ~/workspaces/projects
 **OPTION A.** Clone the repository:
 
 ```sh
-git clone https://github.com/bybatkhuu/server.nginx-template.git && \
-    cd server.nginx-template
+git clone https://github.com/bybatkhuu/server-nginx-template.git && \
+    cd server-nginx-template
 ```
 
 **OPTION B.** Clone the repository (for **DEVELOPMENT**: git + ssh key):
 
 ```sh
-git clone git@github.com:bybatkhuu/server.nginx-template.git && \
-    cd server.nginx-template
+git clone git@github.com:bybatkhuu/server-nginx-template.git && \
+    cd server-nginx-template
 ```
 
-**OPTION C.** Download source code from **[releases](https://github.com/bybatkhuu/server.nginx-template/releases)** page.
+**OPTION C.** Download source code from **[releases](https://github.com/bybatkhuu/server-nginx-template/releases)** page.
 
 ### 3. 🛠 Configure the environment
 
@@ -148,7 +148,7 @@ nano ./volumes/storage/nginx/configs/site-enabled/100.example.com.conf
 **[CAUTION]**:
 
 - If ports are conflicting, you should change ports from [**3. step**](#3--configure-the-environment).
-- If container names are conflicting, you should change project directory name (from **`server.nginx-template`** to something else, e.g: `prod.server.nginx-template`) from [**2.2. step**](#2--download-or-clone-the-repository).
+- If container names are conflicting, you should change project directory name (from **`server-nginx-template`** to something else, e.g: `prod.server-nginx-template`) from [**2.2. step**](#2--download-or-clone-the-repository).
 
 ```sh
 ./compose.sh start -l
