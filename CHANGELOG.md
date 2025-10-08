@@ -1,5 +1,16 @@
 # Changelog
 
+## v3.1.1-251008 (2025-10-08)
+
+<!-- Release notes generated using configuration in .github/release.yml at v3.1.1-251008 -->
+
+## What's Changed
+### 🐛 Fixes
+* script: rename functions for consistency and clarity across scripts by @bybatkhuu in https://github.com/bybatkhuu/server-nginx-template/pull/27
+
+
+**Full Changelog**: https://github.com/bybatkhuu/server-nginx-template/compare/v3.1.0-250903...v3.1.1-251008
+
 ## v3.1.0-250903 (2025-09-03)
 
 <!-- Release notes generated using configuration in .github/release.yml at v3.1.0-250903 -->
