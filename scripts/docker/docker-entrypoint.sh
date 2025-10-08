@@ -12,7 +12,7 @@ NGINX_TEMPLATE_SUFFIX="${NGINX_TEMPLATE_SUFFIX:-.template}"
 NGINX_SITE_ENABLED_DIR="${NGINX_SITE_ENABLED_DIR:-/etc/nginx/sites-enabled}"
 
 
-_runNginx()
+_run_nginx()
 {
 	echo "[INFO]: Testing nginx..."
 	nginx -t || exit 2
@@ -24,9 +24,9 @@ _runNginx()
 }
 
 
-_generateDHparam()
+_generate_dh_param()
 {
-	_dhparam_file_path="${NGINX_SSL_DIR}/${NGINX_DHPARAM_FILENAME}"
+	local _dhparam_file_path="${NGINX_SSL_DIR}/${NGINX_DHPARAM_FILENAME}"
 	if [ ! -f "${_dhparam_file_path}" ]; then
 		echo "[INFO]: Generating Diffie-Hellman parameters..."
 		openssl dhparam -out "${_dhparam_file_path}" "${NGINX_SSL_KEY_LENGTH}" || exit 2
@@ -37,9 +37,9 @@ _generateDHparam()
 	fi
 }
 
-_httpsSelf()
+_https_self()
 {
-	_generateDHparam
+	_generate_dh_param
 
 	echo "[INFO]: Preparing self-signed SSL..."
 	NGINX_SSL_COUNTRY=${NGINX_SSL_COUNTRY:-KR}
@@ -48,10 +48,10 @@ _httpsSelf()
 	NGINX_SSL_ORG_NAME=${NGINX_SSL_ORG_NAME:-Company}
 	NGINX_SSL_COM_NAME=${NGINX_SSL_COM_NAME:-www.example.com}
 
-	_ssl_key_filename="self.key"
-	_ssl_cert_filename="self.crt"
-	_ssl_key_file_path="${NGINX_SSL_DIR}/${_ssl_key_filename}"
-	_ssl_cert_file_path="${NGINX_SSL_DIR}/${_ssl_cert_filename}"
+	local _ssl_key_filename="self.key"
+	local _ssl_cert_filename="self.crt"
+	local _ssl_key_file_path="${NGINX_SSL_DIR}/${_ssl_key_filename}"
+	local _ssl_cert_file_path="${NGINX_SSL_DIR}/${_ssl_cert_filename}"
 	if [ ! -f "${_ssl_key_file_path}" ] || [ ! -f "${_ssl_cert_file_path}" ]; then
 		openssl req -x509 -nodes -days 365 -newkey "rsa:${NGINX_SSL_KEY_LENGTH}" \
 			-keyout "${_ssl_key_file_path}" -out "${_ssl_cert_file_path}" \
@@ -62,10 +62,10 @@ _httpsSelf()
 	fi
 	echo -e "[OK]: Done.\n"
 
-	_runNginx
+	_run_nginx
 }
 
-_httpsLets()
+_https_lets()
 {
 	if [ ! -d "${NGINX_SSL_DIR}/live" ]; then
 		mkdir -vp "${NGINX_SSL_DIR}/live" || exit 2
@@ -85,13 +85,13 @@ _httpsLets()
 		find /var/www/.well-known -type d -exec chmod -c +s {} + || exit 2
 	fi
 
-	_generateDHparam
+	_generate_dh_param
 
 	echo "[INFO]: Setting up watcher for SSL/TLS files..."
 	watchman -- trigger "${NGINX_SSL_DIR}/live" cert-update "*.pem" -- /usr/local/bin/nginx-reload.sh || exit 2
 	echo -e "[OK]: Done.\n"
 
-	_runNginx
+	_run_nginx
 }
 
 
@@ -117,8 +117,8 @@ main()
 
 	## Rendering template configs:
 	find "${NGINX_TEMPLATE_DIR}" -follow -type f -name "*${NGINX_TEMPLATE_SUFFIX}" -print | while read -r _template_path; do
-		_template_filename="${_template_path#"${NGINX_TEMPLATE_DIR}"/}"
-		_output_path="${NGINX_SITE_ENABLED_DIR}/${_template_filename%"${NGINX_TEMPLATE_SUFFIX}"}"
+		local _template_filename="${_template_path#"${NGINX_TEMPLATE_DIR}"/}"
+		local _output_path="${NGINX_SITE_ENABLED_DIR}/${_template_filename%"${NGINX_TEMPLATE_SUFFIX}"}"
 
 		if [ -f "${_output_path}" ]; then
 			rm -fv "${_output_path}" || exit 2
@@ -146,18 +146,18 @@ main()
 	## Parsing input:
 	case ${1:-} in
 		"" | -n | --nginx | nginx)
-			_runNginx;;
+			_run_nginx;;
 			# shift;;
 
 		-s=* | --https=*)
-			_https_type="${1#*=}"
+			local _https_type="${1#*=}"
 			if [ "${_https_type}" = "self" ]; then
-				_httpsSelf
+				_https_self
 			elif [ "${_https_type}" = "valid" ]; then
-				_generateDHparam
-				_runNginx
+				_generate_dh_param
+				_run_nginx
 			elif [ "${_https_type}" = "lets" ]; then
-				_httpsLets
+				_https_lets
 			fi
 			shift;;
 
