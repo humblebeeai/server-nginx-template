@@ -6,6 +6,17 @@ hide:
 
 # 📌 Release Notes
 
+## v3.2.0-251025 (2025-10-25)
+
+<!-- Release notes generated using configuration in .github/release.yml at v3.2.0-251025 -->
+
+## What's Changed
+### ✨ Features
+* feat: add UID and GID handling in Dockerfile and entrypoint script fo… by @bybatkhuu in https://github.com/bybatkhuu/server-nginx-template/pull/28
+
+
+**Full Changelog**: https://github.com/bybatkhuu/server-nginx-template/compare/v3.1.1-251008...v3.2.0-251025
+
 ## v3.1.1-251008 (2025-10-08)
 
 <!-- Release notes generated using configuration in .github/release.yml at v3.1.1-251008 -->
