@@ -4,6 +4,9 @@ set -euo pipefail
 
 echo "[INFO]: Running 'nginx' docker-entrypoint.sh..."
 
+UID=${UID:-1000}
+GID=${GID:-11000}
+
 NGINX_SSL_DIR="${NGINX_SSL_DIR:-/etc/nginx/ssl}"
 NGINX_SSL_KEY_LENGTH=${NGINX_SSL_KEY_LENGTH:-2048}
 NGINX_TEMPLATE_DIR="${NGINX_TEMPLATE_DIR:-/etc/nginx/templates}"
@@ -31,7 +34,7 @@ _generate_dh_param()
 		echo "[INFO]: Generating Diffie-Hellman parameters..."
 		openssl dhparam -out "${_dhparam_file_path}" "${NGINX_SSL_KEY_LENGTH}" || exit 2
 
-		chown -c "1000:${GROUP}" "${_dhparam_file_path}" || exit 2
+		chown -c "${UID}:${GID}" "${_dhparam_file_path}" || exit 2
 		chmod -c 660 "${_dhparam_file_path}" || exit 2
 		echo -e "[OK]: Done.\n"
 	fi
@@ -57,7 +60,7 @@ _https_self()
 			-keyout "${_ssl_key_file_path}" -out "${_ssl_cert_file_path}" \
 			-subj "/C=${NGINX_SSL_COUNTRY}/ST=${NGINX_SSL_STATE}/L=${NGINX_SSL_LOC_CITY}/O=${NGINX_SSL_ORG_NAME}/CN=${NGINX_SSL_COM_NAME}" || exit 2
 
-		chown -c "1000:${GROUP}" "${_ssl_key_file_path}" "${_ssl_cert_file_path}" || exit 2
+		chown -c "${UID}:${GID}" "${_ssl_key_file_path}" "${_ssl_cert_file_path}" || exit 2
 		chmod -c 660 "${_ssl_key_file_path}" "${_ssl_cert_file_path}" || exit 2
 	fi
 	echo -e "[OK]: Done.\n"
@@ -79,7 +82,7 @@ _https_lets()
 
 	if [ ! -d "/var/www/.well-known/acme-challenge" ]; then
 		mkdir -pv /var/www/.well-known/acme-challenge || exit 2
-		chown -Rc "www-data:${GROUP}" /var/www/.well-known || exit 2
+		chown -Rc "www-data:${GID}" /var/www/.well-known || exit 2
 		find /var/www/.well-known -type d -exec chmod -c 775 {} + || exit 2
 		find /var/www/.well-known -type f -exec chmod -c 664 {} + || exit 2
 		find /var/www/.well-known -type d -exec chmod -c +s {} + || exit 2
@@ -101,7 +104,7 @@ main()
 		if [ ! -f "${NGINX_SSL_DIR}/.htpasswd" ]; then
 			echo "[INFO]: Creating htpasswd file..."
 			htpasswd -cb "${NGINX_SSL_DIR}/.htpasswd" "${NGINX_BASIC_AUTH_USER}" "${NGINX_BASIC_AUTH_PASS}" || exit 2
-			chown -c "1000:${GROUP}" "${NGINX_SSL_DIR}/.htpasswd" || exit 2
+			chown -c "${UID}:${GID}" "${NGINX_SSL_DIR}/.htpasswd" || exit 2
 			chmod -c 660 "${NGINX_SSL_DIR}/.htpasswd" || exit 2
 			echo -e "[OK]: Done.\n"
 		fi
@@ -132,12 +135,12 @@ main()
 	done
 
 	echo "[INFO]: Setting permissions..."
-	chown -R "www-data:${GROUP}" /usr/share/nginx/html /var/www || exit 2
+	chown -R "www-data:${GID}" /usr/share/nginx/html /var/www || exit 2
 	find /usr/share/nginx/html /var/www /var/log/nginx -type d -exec chmod 775 {} + || exit 2
 	find /usr/share/nginx/html /var/www /var/log/nginx -type f -exec chmod 664 {} + || exit 2
 	find /usr/share/nginx/html /var/www /var/log/nginx -type d -exec chmod +s {} + || exit 2
 
-	chown -R "1000:${GROUP}" /etc/nginx /var/lib/nginx /var/cache/nginx /var/log/nginx || exit 2
+	chown -R "${UID}:${GID}" /etc/nginx /var/lib/nginx /var/cache/nginx /var/log/nginx || exit 2
 	find /etc/nginx /var/lib/nginx /var/cache/nginx -type d -exec chmod 770 {} + || exit 2
 	find /etc/nginx /var/lib/nginx /var/cache/nginx -type f -exec chmod 660 {} + || exit 2
 	find /etc/nginx /var/lib/nginx /var/cache/nginx -type d -exec chmod ug+s {} + || exit 2
