@@ -6,6 +6,14 @@ hide:
 
 # 📌 Release Notes
 
+## v3.2.1-251025 (2025-10-25)
+
+<!-- Release notes generated using configuration in .github/release.yml at v3.2.1-251025 -->
+
+
+
+**Full Changelog**: https://github.com/bybatkhuu/server-nginx-template/compare/v3.2.0-251025...v3.2.1-251025
+
 ## v3.2.0-251025 (2025-10-25)
 
 <!-- Release notes generated using configuration in .github/release.yml at v3.2.0-251025 -->
