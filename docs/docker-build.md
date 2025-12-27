@@ -13,7 +13,7 @@
 # -c, --clean-images                        Enable clearning leftover images.
 # -x, --cross-compile                       Enable cross compiling.
 # -b=BASE_IMAGE, --base-image=BASE_IMAGE    Base image name. Default is "ubuntu:22.04".
-# -g=REGISTRY, --registry=REGISTRY          Docker image registry (docker registry and username). Default is "bybatkhuu".
+# -g=REGISTRY, --registry=REGISTRY          Docker image registry (docker registry and username). Default is "humblebeeai".
 # -r=REPO, --repo=REPO                      Docker image repository. Default is "nginx".
 # -v=VERSION, --version=VERSION             Docker image version. Default read from "app/__version__.py" file.
 # -s=SUBTAG, --subtag=SUBTAG                Docker image subtag. Default is "".
@@ -26,7 +26,7 @@
 ./scripts/build.sh -x
 
 # Or:
-./scripts/build.sh -p=arm64 -b=ubuntu:22.04 -n=bybatkhuu -r=nginx -v=1.0.0 -s=-arm64 -u -c
+./scripts/build.sh -p=arm64 -b=ubuntu:22.04 -n=humblebeeai -r=nginx -v=1.0.0 -s=-arm64 -u -c
 ```
 
 **B.** Or docker build command:
@@ -43,13 +43,13 @@ docker build \
 # For example:
 docker build \
     --progress plain \
-    -t bybatkhuu/nginx:latest \
+    -t humblebeeai/nginx:latest \
     .
 
 # Push image to Docker Registry:
 docker push [IMG_FULLNAME]
 # For example:
-docker push bybatkhuu/nginx:latest
+docker push humblebeeai/nginx:latest
 ```
 
 **C.** Or docker buildx command (**cross-compile**):
@@ -73,9 +73,9 @@ docker buildx build \
 docker buildx build \
     --progress plain \
     --platform linux/amd64,linux/arm64 \
-    --cache-from=type=registry,ref=bybatkhuu/nginx:cache-latest \
-    --cache-to=type=registry,ref=bybatkhuu/nginx:cache-latest,mode=max \
-    -t bybatkhuu/nginx:latest \
+    --cache-from=type=registry,ref=humblebeeai/nginx:cache-latest \
+    --cache-to=type=registry,ref=humblebeeai/nginx:cache-latest,mode=max \
+    -t humblebeeai/nginx:latest \
     --push \
     .
 

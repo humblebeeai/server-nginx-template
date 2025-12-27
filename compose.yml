@@ -1,6 +1,6 @@
 services:
   nginx:
-    image: bybatkhuu/nginx:latest
+    image: humblebeeai/nginx:latest
     build:
       context: .
     restart: unless-stopped
