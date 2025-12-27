@@ -1,10 +1,10 @@
 # NGINX template
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bybatkhuu/server-nginx-template/2.build-publish.yml?logo=GitHub)](https://github.com/bybatkhuu/server-nginx-template/actions/workflows/2.build-publish.yml)
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/bybatkhuu/server-nginx-template?logo=GitHub)](https://github.com/bybatkhuu/server-nginx-template/releases)
-[![Docker Image Version](https://img.shields.io/docker/v/bybatkhuu/nginx?sort=semver&logo=docker)](https://hub.docker.com/r/bybatkhuu/nginx/tags)
-[![Docker Image Size](https://img.shields.io/docker/image-size/bybatkhuu/nginx?sort=semver&logo=docker)](https://hub.docker.com/r/bybatkhuu/nginx/tags)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/humblebeeai/server-nginx-template/2.build-publish.yml?logo=GitHub)](https://github.com/humblebeeai/server-nginx-template/actions/workflows/2.build-publish.yml)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/humblebeeai/server-nginx-template?logo=GitHub)](https://github.com/humblebeeai/server-nginx-template/releases)
+[![Docker Image Version](https://img.shields.io/docker/v/humblebeeai/nginx?sort=semver&logo=docker)](https://hub.docker.com/r/humblebeeai/nginx/tags)
+[![Docker Image Size](https://img.shields.io/docker/image-size/humblebeeai/nginx?sort=semver&logo=docker)](https://hub.docker.com/r/humblebeeai/nginx/tags)
 
 This is a NGINX template docker image that can be used as a web server, reverse proxy, load balancer and HTTP cache.
 
@@ -31,7 +31,7 @@ This is a NGINX template docker image that can be used as a web server, reverse 
 
 - Prepare **server/PC** to run
 - Install [**docker** and **docker compose**](https://docs.docker.com/engine/install)
-    - Docker image: [**bybatkhuu/nginx**](https://hub.docker.com/r/bybatkhuu/nginx)
+    - Docker image: [**humblebeeai/nginx**](https://hub.docker.com/r/humblebeeai/nginx)
 
 For **DEVELOPMENT**:
 
@@ -55,18 +55,18 @@ cd ~/workspaces/projects
 **OPTION A.** Clone the repository:
 
 ```sh
-git clone https://github.com/bybatkhuu/server-nginx-template.git && \
+git clone https://github.com/humblebeeai/server-nginx-template.git && \
     cd server-nginx-template
 ```
 
 **OPTION B.** Clone the repository (for **DEVELOPMENT**: git + ssh key):
 
 ```sh
-git clone git@github.com:bybatkhuu/server-nginx-template.git && \
+git clone git@github.com:humblebeeai/server-nginx-template.git && \
     cd server-nginx-template
 ```
 
-**OPTION C.** Download source code from **[releases](https://github.com/bybatkhuu/server-nginx-template/releases)** page.
+**OPTION C.** Download source code from **[releases](https://github.com/humblebeeai/server-nginx-template/releases)** page.
 
 ### 3. 🛠 Configure the environment
 
