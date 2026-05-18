@@ -6,6 +6,27 @@ hide:
 
 # 📌 Release Notes
 
+## v3.3.0-260518 (2026-05-18)
+
+<!-- Release notes generated using configuration in .github/release.yml at v3.3.0-260518 -->
+
+## What's Changed
+### 💥 Breaking Changes
+* ⬆️ Bump docker/setup-buildx-action from 3 to 4 by @dependabot[bot]
+* ⬆️ Bump docker/login-action from 3 to 4 by @dependabot[bot]
+* ⬆️ Bump docker/setup-qemu-action from 3 to 4 by @dependabot[bot]
+* ⬆️ Bump actions/setup-python from 5 to 6 by @dependabot[bot]
+* ⬆️ Bump docker/build-push-action from 6 to 7 by @dependabot[bot]
+* ⬆️ Bump actions/checkout from 5 to 6 by @dependabot[bot]
+### ✨ Features
+* ⬆️ Bump https://github.com/gitleaks/gitleaks from v8.28.0 to 8.30.1 by @dependabot[bot]
+* fix: update base image to Ubuntu 26.04 and bump NGINX version to 1.30.1
+
+## New Contributors
+* @dependabot[bot] made their first contribution
+
+**Full Changelog**: https://github.com/humblebeeai/server-nginx-template/compare/v3.2.1-251025...v3.3.0-260518
+
 ## v3.2.1-251025 (2025-10-25)
 
 <!-- Release notes generated using configuration in .github/release.yml at v3.2.1-251025 -->
