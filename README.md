@@ -18,7 +18,7 @@ This is a NGINX template docker image that can be used as a web server, reverse 
 - Rate limiting
 - HTTP cache
 - HTTP header transformations
-- HTTP/2 and HTTPS
+- HTTP/2, HTTP/3 and HTTPS
 - Basic authentication
 - Websockets
 - Docker and docker-compose
@@ -40,33 +40,19 @@ For **DEVELOPMENT**:
 
 ### 2. 📥 Download or clone the repository
 
-**2.1.** Prepare projects directory (if not exists) in your **server**:
-
 ```sh
-# Create projects directory:
 mkdir -pv ~/workspaces/projects
-
-# Enter into projects directory:
 cd ~/workspaces/projects
+
+# HTTPS:
+git clone https://github.com/bybatkhuu/server-nginx-template.git
+# Or SSH (development):
+git clone git@github.com:bybatkhuu/server-nginx-template.git
+
+cd server-nginx-template
 ```
 
-**2.2.** Follow one of the below options **[A]**, **[B]** or **[C]**:
-
-**OPTION A.** Clone the repository:
-
-```sh
-git clone https://github.com/bybatkhuu/server-nginx-template.git && \
-    cd server-nginx-template
-```
-
-**OPTION B.** Clone the repository (for **DEVELOPMENT**: git + ssh key):
-
-```sh
-git clone git@github.com:bybatkhuu/server-nginx-template.git && \
-    cd server-nginx-template
-```
-
-**OPTION C.** Download source code from **[releases](https://github.com/bybatkhuu/server-nginx-template/releases)** page.
+Alternatively, download the source from the [**releases**](https://github.com/bybatkhuu/server-nginx-template/releases) page and extract it into your projects directory.
 
 ### 3. 🛠 Configure the environment
 
@@ -157,38 +143,13 @@ docker compose up -d --remove-orphans --force-recreate && \
     docker compose logs -f --tail 100
 ```
 
-### 6. 📡 Check service is running and monitor logs
-
-📋 Check service is running:
+### 6. 📡 Check services are running and monitor logs
 
 ```sh
-./compose.sh list
-# Or:
-docker compose ps
-```
-
-📟 Monitor logs of container:
-
-```sh
-./compose.sh logs
-# Or:
-docker compose logs -f --tail 100
-```
-
-🧵 List all running processes inside container:
-
-```sh
-./compose.sh ps
-# Or:
-docker compose top
-```
-
-📊 Check resource usage of container:
-
-```sh
-./compose.sh stats
-# Or:
-docker compose stats
+./compose.sh list    # or: docker compose ps
+./compose.sh logs    # or: docker compose logs -f -n 100
+./compose.sh ps      # or: docker compose top
+./compose.sh stats   # or: docker compose stats
 ```
 
 ### 7. 🪂 Stop docker compose
@@ -215,9 +176,8 @@ You can use the following environment variables to configure:
 # TZ=UTC
 
 ## --- NGINX configs --- ##
-## NGINX basic auth username and password:
-NGINX_BASIC_AUTH_USER=nginx_admin
-NGINX_BASIC_AUTH_PASS="NGINX_ADMIN_PASSWORD123" # !!! CHANGE THIS TO RANDOM PASSWORD !!!
+# NGINX_BASIC_AUTH_USER=nginx_admin
+# NGINX_BASIC_AUTH_PASS=""
 
 
 ## -- Docker configs -- ##

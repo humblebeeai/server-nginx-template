@@ -122,6 +122,11 @@ _reload()
 	docker compose exec "${_DEFAULT_SERVICE}" /bin/bash -c "nginx -t && nginx -s reload" || exit 2
 }
 
+_test()
+{
+	docker compose exec "${_DEFAULT_SERVICE}" /bin/bash -c "nginx -t" || exit 2
+}
+
 _enter()
 {
 	local _service="${_DEFAULT_SERVICE}"
@@ -178,6 +183,7 @@ COMMANDS:
     stats | resource | limit
     exec
     reload
+	test
     enter
     images
     clean | clear
@@ -239,6 +245,10 @@ while [ $# -gt 0 ]; do
 		reload)
 			shift
 			_reload
+			exit 0;;
+		test)
+			shift
+			_test
 			exit 0;;
 		enter)
 			shift
