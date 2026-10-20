@@ -6,6 +6,17 @@ hide:
 
 # 📌 Release Notes
 
+## v3.4.0-261020 (2026-10-20)
+
+<!-- Release notes generated using configuration in .github/release.yml at v3.4.0-261020 -->
+
+## What's Changed
+### ✨ Features
+* feat: update NGINX configuration for HTTP3 QUIC support and improve README … by @bybatkhuu in https://github.com/bybatkhuu/server-nginx-template/pull/43
+
+
+**Full Changelog**: https://github.com/bybatkhuu/server-nginx-template/compare/v3.3.3-260829...v3.4.0-261020
+
 ## v3.3.3-260829 (2026-08-29)
 
 <!-- Release notes generated using configuration in .github/release.yml at v3.3.3-260829 -->
