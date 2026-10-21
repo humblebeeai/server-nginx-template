@@ -158,7 +158,8 @@ COPY --chown="1000:${GROUP}" --chmod=770 ./src/configs/ /etc/nginx/
 
 # VOLUME ["/etc/nginx/ssl"]
 # EXPOSE 80 443
-# HEALTHCHECK --start-period=20s --start-interval=1s --interval=5m --timeout=5s --retries=3 \
-# 	CMD curl -f http://localhost:80 || exit 1
+
+HEALTHCHECK --start-period=30s --start-interval=1s --interval=5m --timeout=5s --retries=5 \
+	CMD curl -f http://localhost || exit 1
 
 ENTRYPOINT ["docker-entrypoint.sh"]
