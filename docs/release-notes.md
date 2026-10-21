@@ -6,6 +6,17 @@ hide:
 
 # 📌 Release Notes
 
+## v3.5.0-261021 (2026-10-21)
+
+<!-- Release notes generated using configuration in .github/release.yml at v3.5.0-261021 -->
+
+## What's Changed
+### ✨ Features
+* feat: enhance healthcheck configuration in Dockerfile and remove comm… by @bybatkhuu in https://github.com/bybatkhuu/server-nginx-template/pull/44
+
+
+**Full Changelog**: https://github.com/bybatkhuu/server-nginx-template/compare/v3.4.0-261020...v3.5.0-261021
+
 ## v3.4.0-261020 (2026-10-20)
 
 <!-- Release notes generated using configuration in .github/release.yml at v3.4.0-261020 -->
